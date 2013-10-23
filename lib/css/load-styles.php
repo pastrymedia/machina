@@ -63,3 +63,35 @@ function machina_load_admin_styles() {
 	wp_enqueue_style( 'machina_admin_css', MACHINA_CSS_URL . "/admin$suffix.css", array(), PARENT_THEME_VERSION );
 
 }
+
+add_action( 'wp_enqueue_scripts', 'machina_load_print_stylesheet' );
+/**
+ * Set our own action hook for hooking styles in
+ *
+ * @since 1.5.0
+ *
+ * @uses  get_stylesheet_directory()
+ */
+function machina_load_print_stylesheet() {
+
+  /**
+   * At first, look in child theme for custom print stylesheet: 'print.css'
+   * If it exists, enqueue it!
+   */
+  if ( is_readable( get_stylesheet_directory() . '/assets/css/print.css' ) ) {
+
+    /* Enqueue child theme print stylesheet. */
+    wp_enqueue_style( 'printstyle-child', get_stylesheet_directory_uri() . '/assets/css/print.css', false, defined( 'CHILD_THEME_VERSION' ) ? CHILD_THEME_VERSION : PARENT_THEME_VERSION, 'print' );
+
+  }
+
+  /** If no custom/user stylesheet exists, enqueue our default plugin's print styles */
+  else {
+
+    $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+    wp_enqueue_style( 'printstyle', MACHINA_CSS_URL . "/print$suffix.css", false, PARENT_THEME_VERSION, 'print' );
+
+  } // end if/else stylesheet file checks
+
+}  // end of function machina_load_print_stylesheet
