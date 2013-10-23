@@ -208,6 +208,9 @@ function machina_load_framework() {
 	require_once( MACHINA_STRUCTURE_DIR . '/archive.php' );
 	require_once( MACHINA_STRUCTURE_DIR . '/search.php' );
 
+	//* Load Extensions
+	require_once( MACHINA_EXTENSIONS_DIR . '/custom-hooks/plugin.php' );
+
 	//* Load Admin
 	if ( is_admin() ) :
 	require_once( MACHINA_ADMIN_DIR . '/menu.php' );
