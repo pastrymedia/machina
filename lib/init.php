@@ -220,6 +220,7 @@ function machina_load_framework() {
 	//* Load Connections
 	require_once( MACHINA_CONNECT_DIR . '/bbpress/init.php' );
 	//require_once( MACHINA_CONNECT_DIR . '/coauthors/plugin.php' );
+	require_once( MACHINA_CONNECT_DIR . '/edd/plugin.php' );
 
 	//* Load Admin
 	if ( is_admin() ) :
