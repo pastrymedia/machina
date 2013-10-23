@@ -52,6 +52,9 @@ function machina_theme_support() {
 	add_theme_support( 'machina-auto-updates' );
 	add_theme_support( 'machina-breadcrumbs' );
 
+	// Editor Styles
+	add_editor_style( '/lib/css/editor-style.css' );
+
 	//* Maybe add support for Machina menus
 	if ( ! current_theme_supports( 'machina-menus' ) )
 		add_theme_support( 'machina-menus', array(
@@ -111,6 +114,7 @@ function machina_constants() {
 	define( 'MACHINA_JS_DIR', MACHINA_LIB_DIR . '/js' );
 	define( 'MACHINA_CSS_DIR', MACHINA_LIB_DIR . '/css' );
 	define( 'MACHINA_CLASSES_DIR', MACHINA_LIB_DIR . '/classes' );
+	define( 'MACHINA_EXTENSIONS_DIR', MACHINA_LIB_DIR . '/extensions' );
 	define( 'MACHINA_FUNCTIONS_DIR', MACHINA_LIB_DIR . '/functions' );
 	define( 'MACHINA_SHORTCODES_DIR', MACHINA_LIB_DIR . '/shortcodes' );
 	define( 'MACHINA_STRUCTURE_DIR', MACHINA_LIB_DIR . '/structure' );
@@ -126,6 +130,7 @@ function machina_constants() {
 	define( 'MACHINA_ADMIN_IMAGES_URL', MACHINA_LIB_URL . '/admin/images' );
 	define( 'MACHINA_JS_URL', MACHINA_LIB_URL . '/js' );
 	define( 'MACHINA_CLASSES_URL', MACHINA_LIB_URL . '/classes' );
+	define( 'MACHINA_EXTENSIONS_URL', MACHINA_LIB_URL . '/extensions' );
 	define( 'MACHINA_CSS_URL', MACHINA_LIB_URL . '/css' );
 	define( 'MACHINA_FUNCTIONS_URL', MACHINA_LIB_URL . '/functions' );
 	define( 'MACHINA_SHORTCODES_URL', MACHINA_LIB_URL . '/shortcodes' );

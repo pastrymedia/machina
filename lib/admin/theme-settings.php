@@ -115,6 +115,8 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 				'footer_scripts'            => '',
 				'theme_version'             => PARENT_THEME_VERSION,
 				'db_version'                => PARENT_DB_VERSION,
+				'footer-left'   						=> 'Copyright &copy; ' . date( 'Y' ) . ' All Rights Reserved',
+				'footer-right' 							=> 'Site by <a href="http://www.machinathemes.come">Machina Themes</a>',
 			)
 		);
 
@@ -194,6 +196,8 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 			$this->settings_field,
 			array(
 				'nav_extras_twitter_text',
+				'footer-left',
+				'footer-right',
 			)
 		);
 
@@ -434,6 +438,7 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 		add_meta_box( 'machina-theme-settings-comments', __( 'Comments and Trackbacks', 'machina' ), array( $this, 'comments_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-theme-settings-posts', __( 'Content Archives', 'machina' ), array( $this, 'post_archives_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-theme-settings-blogpage', __( 'Blog Page Template', 'machina' ), array( $this, 'blogpage_box' ), $this->pagehook, 'main' );
+		add_meta_box('footer_metabox', 'Footer', array( $this, 'footer_metabox' ), $this->pagehook, 'main' );
 
 		if ( current_user_can( 'unfiltered_html' ) )
 			add_meta_box( 'machina-theme-settings-scripts', __( 'Header and Footer Scripts', 'machina' ), array( $this, 'scripts_box' ), $this->pagehook, 'main' );
@@ -937,6 +942,19 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 		<p><span class="description"><?php printf( __( 'The %1$s hook executes immediately before the closing %2$s tag in the document source.', 'machina' ), machina_code( 'wp_footer()' ), machina_code( '</body>' ) ); ?></span></p>
 		<?php
 
+	}
+
+	/**
+	 * Footer Metabox
+	 * @since 1.0.0
+	 */
+	function footer_metabox() {
+
+	echo '<p><strong>Footer Left:</strong></p>';
+	wp_editor( $this->get_field_value( 'footer-left' ), $this->get_field_id( 'footer-left' ), array( 'textarea_rows' => 5 ) );
+
+	echo '<p><strong>Footer Right:</strong></p>';
+	wp_editor( $this->get_field_value( 'footer-right' ), $this->get_field_id( 'footer-right' ), array( 'textarea_rows' => 5 ) );
 	}
 
 }

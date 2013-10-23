@@ -24,9 +24,12 @@ add_action( 'admin_menu', 'machina_add_inpost_seo_box' );
  */
 function machina_add_inpost_seo_box() {
 
+	if ( machina_detect_seo_plugins() )
+		return;
+
 	foreach ( (array) get_post_types( array( 'public' => true ) ) as $type ) {
 		if ( post_type_supports( $type, 'machina-seo' ) )
-			add_meta_box( 'machina_inpost_seo_box', __( 'Theme SEO Settings', 'machina' ), 'machina_inpost_seo_box', $type, 'normal', 'high' );
+			add_meta_box( 'machina_inpost_seo_box', __( 'Theme SEO Settings', 'machina' ), 'machina_inpost_seo_box', $type, 'normal', 'default' );
 	}
 
 }
@@ -211,7 +214,7 @@ function machina_add_inpost_layout_box() {
 
 	foreach ( (array) get_post_types( array( 'public' => true ) ) as $type ) {
 		if ( post_type_supports( $type, 'machina-layouts' ) )
-			add_meta_box( 'machina_inpost_layout_box', __( 'Layout Settings', 'machina' ), 'machina_inpost_layout_box', $type, 'normal', 'high' );
+			add_meta_box( 'machina_inpost_layout_box', __( 'Layout Settings', 'machina' ), 'machina_inpost_layout_box', $type, 'normal', 'default' );
 	}
 
 }
