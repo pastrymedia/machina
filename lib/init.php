@@ -212,6 +212,7 @@ function machina_load_framework() {
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-hooks/plugin.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-sidebars/plugin.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-menu.php' );
+	require_once( MACHINA_EXTENSIONS_DIR . '/microdata-manager.php' );
 
 	//* Load Admin
 	if ( is_admin() ) :
