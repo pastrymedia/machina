@@ -11,5 +11,7 @@
  * @link    http://my.machinathemes.com/themes/machina/
  */
 
-//* Initialize Machina
+//* Template Name: Blog
+
+//* The blog page loop logic is located in lib/structure/loops.php
 machina();

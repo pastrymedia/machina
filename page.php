@@ -11,5 +11,5 @@
  * @link    http://my.machinathemes.com/themes/machina/
  */
 
-//* Initialize Machina
+//* This file handles pages, but only exists for the sake of child theme forward compatibility.
 machina();

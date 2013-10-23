@@ -1,34 +1,25 @@
 <?php
-
-//* Exit if accessed directly
-if ( !defined('ABSPATH')) exit;
+/*
+ WARNING: This file is part of the core Machina Framework. DO NOT edit
+ this file under any circumstances. Please do all modifications
+ in the form of a child theme.
+ */
 
 /**
- * Machina WordPress Theme
- * Main Theme Functions
+ * This file calls the init.php file, but only
+ * if the child theme hasn't called it first.
  *
- * functions.php
+ * This method allows the child theme to load
+ * the framework so it can use the framework
+ * components immediately.
  *
- * WARNING: This file is part of the ExMachina Framework Engine. DO NOT edit
- * this file under any circumstances. Please do all modifications in the form
- * of a child theme.
+ * This file is a core Machina file and should not be edited.
  *
- * The functions file is used to initialize everything in the theme. It controls
- * how the theme is loaded and sets up the supported features, default actions,
- * and default filters. If making customizations, users should create a child
- * theme and make changes to its functions.php file (not this one).
- *
- * Child themes should do their setup on the 'exmachina_init' action hook with
- * a priority of 11 if they want to override parent theme features. Use a priority
- * of 9 or lower if wanted to run before the parent theme.
- *
- * @package     Machina
- * @subpackage  Functions
- * @author      Machina Themes | @machinathemes
- * @copyright   Copyright(c) 2012-2013, Machina Themes
- * @license     http://opensource.org/licenses/gpl-2.0.php GPL-2.0+
- * @link        http://www.machinathemes.com/
+ * @category Machina
+ * @package  Templates
+ * @author   MachinaThemes
+ * @license  GPL-2.0+
+ * @link     http://my.machinathemes.com/themes/machina
  */
-###############################################################################
-# begin functions
-###############################################################################
+
+require_once( dirname( __FILE__ ) . '/lib/init.php' );
