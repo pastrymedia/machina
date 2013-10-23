@@ -114,6 +114,7 @@ function machina_constants() {
 	define( 'MACHINA_JS_DIR', MACHINA_LIB_DIR . '/js' );
 	define( 'MACHINA_CSS_DIR', MACHINA_LIB_DIR . '/css' );
 	define( 'MACHINA_CLASSES_DIR', MACHINA_LIB_DIR . '/classes' );
+	define( 'MACHINA_CONNECT_DIR', MACHINA_LIB_DIR . '/connect' );
 	define( 'MACHINA_EXTENSIONS_DIR', MACHINA_LIB_DIR . '/extensions' );
 	define( 'MACHINA_FUNCTIONS_DIR', MACHINA_LIB_DIR . '/functions' );
 	define( 'MACHINA_SHORTCODES_DIR', MACHINA_LIB_DIR . '/shortcodes' );
@@ -130,6 +131,7 @@ function machina_constants() {
 	define( 'MACHINA_ADMIN_IMAGES_URL', MACHINA_LIB_URL . '/admin/images' );
 	define( 'MACHINA_JS_URL', MACHINA_LIB_URL . '/js' );
 	define( 'MACHINA_CLASSES_URL', MACHINA_LIB_URL . '/classes' );
+	define( 'MACHINA_CONNECT_URL', MACHINA_LIB_URL . '/connect' );
 	define( 'MACHINA_EXTENSIONS_URL', MACHINA_LIB_URL . '/extensions' );
 	define( 'MACHINA_CSS_URL', MACHINA_LIB_URL . '/css' );
 	define( 'MACHINA_FUNCTIONS_URL', MACHINA_LIB_URL . '/functions' );
@@ -214,6 +216,9 @@ function machina_load_framework() {
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-menu.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/microdata-manager.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/widgetized-notfound/plugin.php' );
+
+	//* Load Connections
+	require_once( MACHINA_CONNECT_DIR . '/bbpress/init.php' );
 
 	//* Load Admin
 	if ( is_admin() ) :
