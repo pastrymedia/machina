@@ -1,2 +1,2 @@
-machina
-=======
+Machina Framework
+=================
