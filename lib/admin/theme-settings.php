@@ -117,6 +117,8 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 				'db_version'                => PARENT_DB_VERSION,
 				'footer-left'   						=> 'Copyright &copy; ' . date( 'Y' ) . ' All Rights Reserved',
 				'footer-right' 							=> 'Site by <a href="http://www.machinathemes.come">Machina Themes</a>',
+				'post_info'                 => '[post_date] ' . __( 'by', 'machina' ) . ' [post_author_posts_link] [post_comments] [post_edit]',
+				'post_meta'                 => '[post_categories] [post_tags]',
 			)
 		);
 
@@ -198,6 +200,8 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 				'nav_extras_twitter_text',
 				'footer-left',
 				'footer-right',
+				'post_info',
+				'post_meta',
 			)
 		);
 
@@ -424,6 +428,7 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 			add_meta_box( 'machina-theme-settings-style-selector', __( 'Color Style', 'machina' ), array( $this, 'style_box' ), $this->pagehook, 'main' );
 
 		add_meta_box( 'machina-theme-settings-feeds', __( 'Custom Feeds', 'machina' ), array( $this, 'feeds_box' ), $this->pagehook, 'main' );
+		add_meta_box( 'machina-theme-settings-edits', __( 'Custom Edits', 'machina' ), array( $this, 'edits_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-theme-settings-layout', __( 'Default Layout', 'machina' ), array( $this, 'layout_box' ), $this->pagehook, 'main' );
 
 		if ( ! current_theme_supports( 'machina-custom-header' ) && ! current_theme_supports( 'custom-header' ) )
@@ -711,6 +716,36 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 		</p>
 
 		<p><span class="description"><?php printf( __( 'If your custom feed(s) are not handled by Feedburner, we do not recommend that you use the redirect options.', 'machina' ) ); ?></span></p>
+		<?php
+
+	}
+
+	/**
+	 * Callback for Theme Settings Custom Edits meta box.
+	 *
+	 * @since 1.3.0
+	 *
+	 * @uses \Machina_Admin::get_field_id()    Construct field ID.
+	 * @uses \Machina_Admin::get_field_name()  Construct field name.
+	 * @uses \Machina_Admin::get_field_value() Retrieve value of key under $this->settings_field.
+	 *
+	 * @see \Machina_Admin_Settings::metaboxes() Register meta boxes on the Theme Settings page.
+	 */
+	function edits_box() {
+
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'post_info' ); ?>"><?php _e( 'Post Info:', 'machina' ); ?></label><br />
+			<input type="text" name="<?php echo $this->get_field_name( 'post_info' ); ?>" id="<?php echo $this->get_field_id( 'post_info' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'post_info' ) ); ?>" size="50" />
+
+		</p>
+
+		<p>
+			<label for="<?php echo $this->get_field_id( 'post_meta' ); ?>"><?php _e( 'Post Meta:', 'machina' ); ?></label><br />
+			<input type="text" name="<?php echo $this->get_field_name( 'post_meta' ); ?>" id="<?php echo $this->get_field_id( 'post_meta' ); ?>" value="<?php echo esc_attr( $this->get_field_value( 'post_meta' ) ); ?>" size="50" />
+
+		</p>
+
 		<?php
 
 	}

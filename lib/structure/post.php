@@ -253,6 +253,15 @@ function machina_post_info() {
 
 }
 
+add_filter( 'machina_post_info', 'post_info_filter' );
+
+function post_info_filter( $output ) {
+
+	return machina_get_option( 'post_info' );
+
+}
+
+
 add_action( 'machina_entry_content', 'machina_do_post_image', 8 );
 add_action( 'machina_post_content', 'machina_do_post_image' );
 /**
@@ -451,6 +460,14 @@ function machina_post_meta() {
 		'html5' => sprintf( '<p class="entry-meta">%s</p>', $post_meta ),
 		'xhtml' => sprintf( '<div class="post-meta">%s</div>', $post_meta ),
 	) );
+
+}
+
+add_filter( 'machina_post_meta', 'post_meta_filter' );
+
+function post_meta_filter( $output ) {
+
+	return machina_get_option( 'post_meta' );
 
 }
 
