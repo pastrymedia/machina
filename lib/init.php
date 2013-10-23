@@ -210,6 +210,7 @@ function machina_load_framework() {
 
 	//* Load Extensions
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-hooks/plugin.php' );
+	require_once( MACHINA_EXTENSIONS_DIR . '/custom-menu.php' );
 
 	//* Load Admin
 	if ( is_admin() ) :
