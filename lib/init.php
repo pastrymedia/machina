@@ -52,9 +52,6 @@ function machina_theme_support() {
 	add_theme_support( 'machina-auto-updates' );
 	add_theme_support( 'machina-breadcrumbs' );
 
-	// Editor Styles
-	add_editor_style( '/lib/css/editor-style.css' );
-
 	//* Maybe add support for Machina menus
 	if ( ! current_theme_supports( 'machina-menus' ) )
 		add_theme_support( 'machina-menus', array(
@@ -118,6 +115,7 @@ function machina_constants() {
 	define( 'MACHINA_EXTENSIONS_DIR', MACHINA_LIB_DIR . '/extensions' );
 	define( 'MACHINA_FUNCTIONS_DIR', MACHINA_LIB_DIR . '/functions' );
 	define( 'MACHINA_SHORTCODES_DIR', MACHINA_LIB_DIR . '/shortcodes' );
+	define( 'MACHINA_PLUGINS_DIR', MACHINA_LIB_DIR . '/plugins' );
 	define( 'MACHINA_STRUCTURE_DIR', MACHINA_LIB_DIR . '/structure' );
 	define( 'MACHINA_TOOLS_DIR', MACHINA_LIB_DIR . '/tools' );
 	define( 'MACHINA_WIDGETS_DIR', MACHINA_LIB_DIR . '/widgets' );
@@ -136,6 +134,7 @@ function machina_constants() {
 	define( 'MACHINA_CSS_URL', MACHINA_LIB_URL . '/css' );
 	define( 'MACHINA_FUNCTIONS_URL', MACHINA_LIB_URL . '/functions' );
 	define( 'MACHINA_SHORTCODES_URL', MACHINA_LIB_URL . '/shortcodes' );
+	define( 'MACHINA_PLUGINS_URL', MACHINA_LIB_URL . '/plugins' );
 	define( 'MACHINA_STRUCTURE_URL', MACHINA_LIB_URL . '/structure' );
 	define( 'MACHINA_WIDGETS_URL', MACHINA_LIB_URL . '/widgets' );
 
@@ -180,6 +179,7 @@ function machina_load_framework() {
 	//* Load Functions
 	require_once( MACHINA_FUNCTIONS_DIR . '/upgrade.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/compat.php' );
+	require_once( MACHINA_FUNCTIONS_DIR . '/custom.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/general.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/options.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/image.php' );
@@ -211,11 +211,13 @@ function machina_load_framework() {
 	require_once( MACHINA_STRUCTURE_DIR . '/search.php' );
 
 	//* Load Extensions
-	require_once( MACHINA_EXTENSIONS_DIR . '/custom-hooks/plugin.php' );
-	require_once( MACHINA_EXTENSIONS_DIR . '/custom-sidebars/plugin.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-menu.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/microdata-manager.php' );
-	require_once( MACHINA_EXTENSIONS_DIR . '/widgetized-notfound/plugin.php' );
+
+	//* Load Plugins
+	require_once( MACHINA_PLUGINS_DIR . '/custom-hooks/plugin.php' );
+	require_once( MACHINA_PLUGINS_DIR . '/custom-sidebars/plugin.php' );
+	require_once( MACHINA_PLUGINS_DIR . '/widgetized-notfound/plugin.php' );
 
 	//* Load Connections
 	require_once( MACHINA_CONNECT_DIR . '/bbpress/init.php' );
