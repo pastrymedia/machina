@@ -153,6 +153,10 @@ body {
 	line-height: 1.625;
 }
 
+body.template-landing {
+	background-color: #f3f3f3;
+}
+
 a,
 button,
 input:focus,
@@ -427,6 +431,16 @@ Structure and Layout
 	padding-top: 4rem;
 }
 
+.template-landing .site-inner {
+	background: #f3f3f3;
+	padding: 0;
+}
+
+.template-landing .site-inner .wrap {
+	margin: 20px auto;
+	width: 700px;
+}
+
 /* Column Widths and Positions
 --------------------------------------------- */
 
@@ -445,6 +459,11 @@ Structure and Layout
 .sidebar-content-sidebar .content-sidebar-wrap,
 .sidebar-sidebar-content .content-sidebar-wrap {
 	float: right;
+}
+
+/* Landing Template */
+.template-landing .content-sidebar-wrap {
+	width: 100%;
 }
 
 /* Content */
@@ -470,6 +489,11 @@ Structure and Layout
 	width: 100%;
 }
 
+/* Landing Template */
+.template-landing.full-width-content .content {
+	width: 620px;
+}
+
 /* Primary Sidebar */
 
 .sidebar-primary {
@@ -492,6 +516,8 @@ Structure and Layout
 .content-sidebar-sidebar .sidebar-secondary {
 	float: right;
 }
+
+
 
 /* Column Classes
 	Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css
@@ -1596,4 +1622,11 @@ Media Queries
 		width: 100%;
 	}
 
+}
+
+@media only screen and (max-width: 960px) {
+	.template-landing .site-inner .wrap,
+	.template-landing.full-width-content .content {
+		width: 100%;
+	}
 }
