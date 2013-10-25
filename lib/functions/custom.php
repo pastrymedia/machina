@@ -340,3 +340,23 @@ function gs_init_pretty_photo( $args = array() ) { ?>
 </script>
 <?php
 }
+
+
+/* Jetpack Share Buttons
+------------------------------------------------------------ */
+
+//* Add Jetpack share buttons above post
+remove_filter( 'the_content', 'sharing_display', 19 );
+remove_filter( 'the_excerpt', 'sharing_display', 19 );
+
+add_filter( 'the_content', 'share_buttons_above_post', 19 );
+add_filter( 'the_excerpt', 'share_buttons_above_post', 19 );
+
+function share_buttons_above_post( $content = '' ) {
+  if ( function_exists( 'sharing_display' ) ) {
+    return sharing_display() . $content;
+  }
+  else {
+    return $content;
+  }
+}

@@ -737,21 +737,7 @@ function machina_prev_next_post_nav() {
 
 }
 
-/**
- * Adds the after post widget area
- * @return [type] [description]
- */
-function machina_do_after_post_widget() {
- 	if ( is_single() ) {
- 	machina_widget_area(
-                'after-post',
-                array(
-                        'before' => '<aside class="sidebar sidebar-after-post widget-area"><div class="">',
-                        'after' => '</div></aside><!-- end .sidebar-after-post -->',
-                )
-        );
- }
-}
+
 
 add_filter( 'the_content', 'bfg_remove_ptags_on_images' );
 /**
@@ -832,4 +818,14 @@ function bfg_next_link_text( $text ) {
 
     return ' ' . html_entity_decode('&#10217;');
 
+}
+
+//* Hook after-entru widget to single posts (outside post class)
+add_action( 'machina_after_entry', 'bg_after_entry_widget', 9  );
+function bg_after_entry_widget() {
+	if ( is_single() && is_active_sidebar( 'after-post' ) ) {
+		echo '<div class="after-post"><div class="wrap">';
+		dynamic_sidebar( 'after-post' );
+		echo '</div></div>';
+	}
 }

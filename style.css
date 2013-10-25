@@ -1631,6 +1631,32 @@ blockquote.right {}
   margin-bottom: 5rem;
 }
 
+/* Split Sidebars
+------------------------------------------------------------ */
+.split-sidebar > .sidebar {
+  width: 360px;
+  padding: 0;
+}
+
+.split-sidebar > .split-sidebar-left, .split-sidebar > .split-sidebar-right {
+  float: left;
+  width: 170px;
+}
+
+.split-sidebar-left {
+  margin-right: 20px;
+}
+
+.split-sidebar-right {
+}
+
+.content-split-sidebar .sidebar {
+  float: right;
+  width: 360px;
+  padding: 10px 0 10px 9px;
+  border-left: 1px #ccc solid;
+}
+
 /* ========================================================================= */
 /* === 09 - Footer Widgets === */
 /* ========================================================================= */
@@ -2236,6 +2262,20 @@ img#wpstats {
   .template-landing .site-inner .wrap,
   .template-landing.full-width-content .content {
     width: 100%;
+  }
+
+  .split-sidebar > .sidebar {
+    width: 100%;
+    padding: 0;
+  }
+
+  .split-sidebar > .split-sidebar-top {
+    text-align: center;
+  }
+
+  .split-sidebar > .split-sidebar-left, .split-sidebar > .split-sidebar-right {
+    float: left;
+    width: 45%;
   }
 }
 
