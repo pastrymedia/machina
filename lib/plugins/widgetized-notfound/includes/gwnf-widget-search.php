@@ -148,19 +148,8 @@ class DDW_GWNF_Search_Widget extends WP_Widget {
 		$gwnf_onfocus = "onfocus=\"if (this.value == '$gwnf_search_string') {this.value = '';}\"";
 		$gwnf_onblur  = "onblur=\"if (this.value == '') {this.value = '$gwnf_search_string';}\"";
 
-		/** XHTML search form */
-		$gwnf_xhtml_form = sprintf(
-			'<form method="get" class="searchform search-form gwnf-search-widget" action="%1$s" role="search" >%2$s<input type="text" value="%3$s" name="s" class="s search-input" %4$s %5$s /><input type="submit" class="searchsubmit search-submit" value="%6$s" /></form>',
-			esc_url( home_url( '/' ) ),
-			$gwnf_label_string,
-			esc_attr( $gwnf_search_string ),
-			$gwnf_onfocus,
-			$gwnf_onblur,
-			esc_attr( $gwnf_button_string )
-		);
-
-		/** HTML5 search form */
-		$gwnf_html5_form = sprintf(
+		/** search form */
+		$gwnf_form = sprintf(
 			'<form method="get" class="search-form gwnf-search-widget" action="%1$s" role="search">%2$s<input type="search" name="s" placeholder="%3$s" /><input type="submit" value="%4$s" /></form>',
 			esc_url( home_url( '/' ) ),
 			$gwnf_label_string,
@@ -168,7 +157,7 @@ class DDW_GWNF_Search_Widget extends WP_Widget {
 			esc_attr( $gwnf_button_string )
 		);
 
-		$gwnf_search_form = $gwnf_html5_form ;
+		$gwnf_search_form = $gwnf_form ;
 
 		/** Search form output for display */
 		echo '<div id="gwnf-search-widget-wrapper">' . $gwnf_search_form . '</div>';

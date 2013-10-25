@@ -171,7 +171,7 @@ class Machina_Admin_Hook_Settings extends Machina_Admin_Boxes {
 		add_meta_box( 'machina-hook-settings-content-hooks', __( 'Content Hooks', 'machina' ), array( $this, 'content_hooks_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-hook-settings-loop-hooks', __( 'Loop Hooks', 'machina' ), array( $this, 'loop_hooks_box' ), $this->pagehook, 'main' );
 
-			add_meta_box( 'machina-hook-settings-entry-hooks', __( 'Entry Hooks', 'machina' ), array( $this, 'html5_entry_hooks_box' ), $this->pagehook, 'main' );
+			add_meta_box( 'machina-hook-settings-entry-hooks', __( 'Entry Hooks', 'machina' ), array( $this, 'entry_hooks_box' ), $this->pagehook, 'main' );
 
 		add_meta_box( 'machina-hook-settings-comment-list-hooks', __( 'Comment List Hooks', 'machina' ), array( $this, 'comment_list_hooks_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-hook-settings-ping-list-hooks', __( 'Ping List Hooks', 'machina' ), array( $this, 'ping_list_hooks_box' ), $this->pagehook, 'main' );
@@ -307,7 +307,7 @@ class Machina_Admin_Hook_Settings extends Machina_Admin_Boxes {
 
 	}
 
-	function html5_entry_hooks_box() {
+	function entry_hooks_box() {
 
 		machina_hooks_form_generate(array(
 			'hook' => 'machina_before_entry',

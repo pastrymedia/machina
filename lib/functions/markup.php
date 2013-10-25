@@ -16,13 +16,9 @@
  *
  * Supported keys for `$args` are:
  *
- *  - `html5` (`sprintf()` pattern markup),
- *  - `xhtml` (XHTML markup),
+ *  - `html` (`sprintf()` pattern markup),
  *  - `context` (name of context),
  *  - `echo` (default is true).
- *
- * If the child theme supports HTML5, then this function will output the `html5` value, with a call to `machina_attr()`
- * with the same context added in. Otherwise, it will output the `xhtml` value.
  *
  * Applies a `machina_markup_{context}` filter early to allow shortcutting the function.
  *

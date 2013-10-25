@@ -35,8 +35,7 @@ add_shortcode( 'gwnf-search', 'ddw_gwnf_shortcode_search' );
  * @param  string 	$onblur
  * @param  string 	$label
  * @param  string 	$post_type
- * @param  string 	$xhtml_search_form
- * @param  string 	$html5_search_form
+ * @param  string 	$search_form
  * @param  string 	$search_form//
  * @param  string 	$output
  *
@@ -85,20 +84,8 @@ function ddw_gwnf_shortcode_search( $atts ) {
 		$post_type = '';
 	}
 
-	/** Build the XHTML search form */
-	$xhtml_search_form = sprintf(
-		'<form method="get" class="searchform search-form" action="%1$s" role="search" >%2$s<input type="text" value="%3$s" name="s" class="s search-input" %4$s %5$s />%6$s<input type="submit" class="searchsubmit search-submit" value="%7$s" /></form>',
-		esc_url( home_url( '/' ) ),
-		$label,
-		esc_attr( $search_text ),
-		$onfocus,
-		$onblur,
-		$post_type,
-		esc_attr( $button_text )
-	);
-
 	/** Build the HTML5 search form */
-	$html5_search_form = sprintf(
+	$search_form = sprintf(
 		'<form method="get" class="search-form" action="%1$s" role="search">%2$s<input type="search" name="s" placeholder="%3$s" />%4$s<input type="submit" value="%5$s" /></form>',
 		esc_url( home_url( '/' ) ),
 		$label,
@@ -112,7 +99,7 @@ function ddw_gwnf_shortcode_search( $atts ) {
 		'<%1$s class="gwnf-search-area%2$s">%3$s</%1$s>',
 		esc_attr( $atts[ 'wrapper' ] ),
 		! empty( $atts[ 'class' ] ) ? esc_attr( $atts[ 'class' ] ) : '',
-		$html5_search_form
+		$search_form
 	);
 
 	/** Return the output - filterable */

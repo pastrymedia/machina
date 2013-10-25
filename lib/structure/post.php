@@ -61,7 +61,7 @@ function machina_reset_loops() {
 
 add_filter( 'post_class', 'machina_entry_post_class' );
 /**
- * Add `entry` post class, remove `hentry` post class if HTML5.
+ * Add `entry` post class, remove `hentry` post class.
  *
  * @since 1.9.0
  *
