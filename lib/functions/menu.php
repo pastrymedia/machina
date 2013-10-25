@@ -35,25 +35,6 @@ function machina_nav_menu_supported( $menu ) {
 }
 
 /**
- * Determine if the Superfish script is enabled.
- *
- * If child theme supports HTML5 and the Load Superfish Script theme setting is checked, or if the
- * `machina_superfish_enabled` filter is true, then this function returns true. False otherwise.
- *
- * @since 1.9.0
- *
- * @uses machina_html5()      Check for HTML5 support.
- * @uses machina_get_option() Get Theme settings value.
- *
- * @return boolean True if Superfish is enabled, false otherwise.
- */
-function machina_superfish_enabled() {
-
-	return ( ! machina_html5() && machina_get_option( 'superfish' ) ) || apply_filters( 'machina_superfish_enabled', false );
-
-}
-
-/**
  * Echo or return a pages or categories menu.
  *
  * Now only used for backwards-compatibility (machina_vestige).

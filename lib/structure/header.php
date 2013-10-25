@@ -966,7 +966,6 @@ function machina_seo_site_description() {
  * @since 1.9.0
  *
  * @uses machina_html5() Check for HTML5 support.
- * @uses machina_superfish_enabled() Check for superfish support.
  *
  * @param  array $args Header menu args.
  *
@@ -976,7 +975,6 @@ function machina_header_menu_args( $args ) {
 
 	$args['container']   = machina_html5() ? '' : 'div';
 	$args['menu_class'] .= ' machina-nav-menu';
-	$args['menu_class'] .= machina_superfish_enabled() ? ' js-superfish' : '';
 
 	return $args;
 

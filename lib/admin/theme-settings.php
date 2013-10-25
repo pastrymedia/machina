@@ -84,7 +84,6 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 				'blog_title'                => 'text',
 				'style_selection'           => '',
 				'site_layout'               => machina_get_default_layout(),
-				'superfish'                 => 0,
 				'nav_extras'                => '',
 				'nav_extras_twitter_id'     => '',
 				'nav_extras_twitter_text'   => __( 'Follow me on Twitter', 'machina' ),
@@ -156,7 +155,6 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 				'comments_posts',
 				'comments_pages',
 				'content_archive_thumbnail',
-				'superfish',
 				'redirect_feed',
 				'redirect_comments_feed',
 				'trackbacks_posts',
@@ -637,16 +635,6 @@ class Machina_Admin_Settings extends Machina_Admin_Boxes {
 	 * @see \Machina_Admin_Settings::metaboxes() Register meta boxes on the Theme Settings page.
 	 */
 	function nav_box() {
-
-		if ( ! machina_html5() ) : ?>
-
-		<p>
-			<input type = "checkbox" name="<?php echo $this->get_field_name( 'superfish' ); ?>" id="<?php echo $this->get_field_id( 'superfish' ); ?>" value="1"<?php checked( $this->get_field_value( 'superfish' ) ); ?> />
-			<label for="<?php echo $this->get_field_id( 'superfish' ); ?>"><?php _e( 'Load Superfish Script?', 'machina' ); ?></label>
-		</p>
-
-		<?php
-		endif;
 
 		if ( machina_nav_menu_supported( 'primary' ) ) : ?>
 

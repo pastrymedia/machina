@@ -31,7 +31,6 @@
    12 Remove Machina Site Title, Site Description, & Header Right
    13 Reposition Items: Breadcrumbs, Footer, Primary & Secondary Navs
    14 Remove Machina/WordPress widgets
-   15 Remove Superfish
    16 Enqueue jQuery from Google CDN with Fallback
    17 CSS Cache Buster
    18 Machina Theme Settings
@@ -508,19 +507,6 @@ function gs_remove_enews_updates_widget() {
 }
 
 /*
-15 Remove Superfish
----------------------------------------------------------------------------------------------------- */
-
-add_action( 'wp_enqueue_scripts', 'unregister_superfish' );
-/**
- * Unregister the superfish scripts
- */
-function unregister_superfish() {
-	wp_deregister_script( 'superfish' );
-	wp_deregister_script( 'superfish-args' );
-}
-
-/*
 16 Enqueue jQuery from Google CDN with Fallback
 ---------------------------------------------------------------------------------------------------- */
 
@@ -633,13 +619,11 @@ function gs_define_machina_settings( $options, $setting ) {
         $options['site_layout']               = 'content-sidebar'; // Default layout
         $options['blog_title']                = 'text'; // Blog title/logo - 'text' or 'image'
         $options['nav']                       = 1; // Include primary navigation (DEPRECATED)
-        $options['nav_superfish']             = 1; // Enable fancy dropdowns
         $options['nav_extras_enable']         = 0; // Enable extras
         $options['nav_extras']                = 'date'; // Extras - 'date', 'rss', 'search', 'twitter'
         $options['nav_extras_twitter_id']     = ''; // Twitter ID
         $options['nav_extras_twitter_text']   = 'Follow me on Twitter'; // Twitter link text
         $options['subnav']                    = 0; // Include secondary navigation (DEPRECATED)
-        $options['subnav_superfish']          = 1; // Enable fancy dropdowns
         $options['breadcrumb_home']           = 1; // Enable breadcrumbs on Front Page
         $options['breadcrumb_single']         = 1; // Enable breadcrumbs on Posts
         $options['breadcrumb_page']           = 1; // Enable breadcrumbs on Pages
@@ -682,9 +666,6 @@ function child_remove_metaboxes( $_machina_theme_settings_pagehook ) {
 	remove_meta_box( 'machina-theme-settings-blogpage', $_machina_theme_settings_pagehook, 'main' );
 	remove_meta_box( 'machina-theme-settings-scripts', $_machina_theme_settings_pagehook, 'main' );
 }
-
-/** Force Superfish */
-add_filter( 'machina_pre_get_option_nav_superfish', '__return_true' );
 
 /*
 19 Alternative Doctype

@@ -24,19 +24,11 @@ function machina_register_scripts() {
 
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-	wp_register_script( 'superfish', MACHINA_JS_URL . "/menu/superfish$suffix.js", array( 'jquery' ), '1.7.4', true );
-	wp_register_script( 'superfish-args', apply_filters( 'machina_superfish_args_url', MACHINA_JS_URL . "/menu/superfish.args$suffix.js" ), array( 'superfish' ), PARENT_THEME_VERSION, true );
-	wp_register_script( 'superfish-compat', MACHINA_JS_URL . "/menu/superfish.compat$suffix.js", array( 'jquery' ), PARENT_THEME_VERSION, true );
-
 }
 
 add_action( 'wp_enqueue_scripts', 'machina_load_scripts' );
 /**
  * Enqueue the scripts used on the front-end of the site.
- *
- * Includes comment-reply, superfish and the superfish arguments.
- *
- * Applies the `machina_superfish_enabled`, and `machina_superfish_args_uri`. filter.
  *
  * @since 0.2.0
  *
@@ -48,18 +40,6 @@ function machina_load_scripts() {
 	//* If a single post or page, threaded comments are enabled, and comments are open
 	if ( is_singular() && get_option( 'thread_comments' ) && comments_open() )
 		wp_enqueue_script( 'comment-reply' );
-
-	//* If superfish is enabled
-	if ( machina_superfish_enabled() ) {
-
-		wp_enqueue_script( 'superfish' );
-		wp_enqueue_script( 'superfish-args' );
-
-		//* Load compatibility script if not running HTML5
-		if ( ! machina_html5() )
-			wp_enqueue_script( 'superfish-compat' );
-
-	}
 
 }
 

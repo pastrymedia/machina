@@ -91,8 +91,6 @@ class Machina_Header_Nav {
 			return;
 
 		$class = 'menu machina-nav-menu menu-header';
-		if ( machina_superfish_enabled() )
-			$class .= ' js-superfish';
 
 		$args = array(
 			'theme_location' => 'header',
