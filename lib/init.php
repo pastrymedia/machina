@@ -171,6 +171,7 @@ function machina_constants() {
 	//* Define Settings Field Constants (for DB storage)
 	define( 'MACHINA_SETTINGS_FIELD', apply_filters( 'machina_settings_field', 'machina-settings' ) );
 	define( 'MACHINA_SEO_SETTINGS_FIELD', apply_filters( 'machina_seo_settings_field', 'machina-seo-settings' ) );
+	define( 'MACHINA_HOOK_SETTINGS_FIELD', apply_filters( 'machina_hook_settings_field', 'machina-hook-settings' ) );
 	define( 'MACHINA_CPT_ARCHIVE_SETTINGS_FIELD_PREFIX', apply_filters( 'machina_cpt_archive_settings_field_prefix', 'machina-cpt-archive-settings-' ) );
 
 }
@@ -212,6 +213,7 @@ function machina_load_framework() {
 	require_once( MACHINA_FUNCTIONS_DIR . '/custom.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/general.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/options.php' );
+	require_once( MACHINA_FUNCTIONS_DIR . '/hooks.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/image.php' );
 	require_once( MACHINA_FUNCTIONS_DIR . '/markup.php' );
 	require_if_theme_supports( 'machina-breadcrumbs', MACHINA_FUNCTIONS_DIR . '/breadcrumb.php' );
@@ -246,7 +248,6 @@ function machina_load_framework() {
 	require_once( MACHINA_EXTENSIONS_DIR . '/developer-tools.php' );
 
 	//* Load Plugins
-	require_once( MACHINA_PLUGINS_DIR . '/custom-hooks/plugin.php' );
 	require_once( MACHINA_PLUGINS_DIR . '/custom-sidebars/plugin.php' );
 	require_once( MACHINA_PLUGINS_DIR . '/widgetized-notfound/plugin.php' );
 
@@ -259,6 +260,7 @@ function machina_load_framework() {
 	if ( is_admin() ) :
 	require_once( MACHINA_ADMIN_DIR . '/menu.php' );
 	require_once( MACHINA_ADMIN_DIR . '/theme-settings.php' );
+	require_once( MACHINA_ADMIN_DIR . '/hook-settings.php' );
 	require_once( MACHINA_ADMIN_DIR . '/seo-settings.php' );
 	require_once( MACHINA_ADMIN_DIR . '/cpt-archive-settings.php' );
 	require_once( MACHINA_ADMIN_DIR . '/import-export.php' );

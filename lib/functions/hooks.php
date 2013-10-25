@@ -1,5 +1,68 @@
 <?php
 
+add_action( 'machina_init', 'machina_execute_hooks', 20 );
+/**
+ * The following code loops through all the hooks, and attempts to
+ * execute the code in the proper location.
+ *
+ * @uses machina_execute_hook() as a callback.
+ *
+ * @since 0.1
+ */
+function machina_execute_hooks() {
+
+	$hooks = get_option( MACHINA_HOOK_SETTINGS_FIELD );
+
+	foreach ( (array) $hooks as $hook => $array ) {
+
+		//* Add new content to hook
+		if ( machina_get_hook_option( $hook, 'content' ) ) {
+			add_action( $hook, 'machina_execute_hook' );
+		}
+
+		//* Unhook stuff
+		if ( isset( $array['unhook'] ) ) {
+
+			foreach( (array) $array['unhook'] as $function ) {
+
+				remove_action( $hook, $function );
+
+			}
+
+		}
+
+	}
+
+}
+
+/**
+ * The following function executes any code meant to be hooked.
+ * It checks to see if shortcodes or PHP should be executed as well.
+ *
+ * @uses machina_get_hook_option()
+ *
+ * @since 0.1
+ */
+function machina_execute_hook() {
+
+	$hook = current_filter();
+	$content = machina_get_hook_option( $hook, 'content' );
+
+	if( ! $hook || ! $content )
+		return;
+
+	$shortcodes = machina_get_hook_option( $hook, 'shortcodes' );
+	$php = machina_get_hook_option( $hook, 'php' );
+
+	$value = $shortcodes ? do_shortcode( $content ) : $content;
+
+	if ( $php )
+		eval( "?>$value<?php " );
+	else
+		echo $value;
+
+}
+
 /**
  * Pull an custom hook option from the database, return value
  *
