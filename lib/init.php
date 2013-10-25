@@ -243,6 +243,7 @@ function machina_load_framework() {
 	//* Load Extensions
 	require_once( MACHINA_EXTENSIONS_DIR . '/custom-menu.php' );
 	require_once( MACHINA_EXTENSIONS_DIR . '/microdata-manager.php' );
+	require_once( MACHINA_EXTENSIONS_DIR . '/developer-tools.php' );
 
 	//* Load Plugins
 	require_once( MACHINA_PLUGINS_DIR . '/custom-hooks/plugin.php' );
