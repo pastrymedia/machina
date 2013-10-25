@@ -52,6 +52,11 @@ function machina_theme_support() {
 	add_theme_support( 'machina-auto-updates' );
 	add_theme_support( 'machina-breadcrumbs' );
 
+	// adding post format support
+	add_theme_support( 'post-formats', array( 'aside', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video', 'audio' ));
+	// adding support for post format images
+	add_theme_support( 'machina-post-format-images' );
+
 	//* Maybe add support for Machina menus
 	if ( ! current_theme_supports( 'machina-menus' ) )
 		add_theme_support( 'machina-menus', array(

@@ -1,4 +1,7 @@
 <?php
+
+/************* CUSTOM LOGIN PAGE *****************/
+
 add_filter( 'login_headerurl', 'bfg_login_headerurl' );
 /**
  * Makes the login screen's logo link to your homepage, instead of to WordPress.org.
@@ -45,6 +48,22 @@ function bfg_replace_login_logo() {
 <?php
 
 }
+
+
+// calling it only on the login page
+add_action( 'login_enqueue_scripts', 'bones_login_css' );
+
+
+// calling your own login css so you can style it
+// @todo: replace with dynamic class
+function bones_login_css() { ?>
+    <link rel="stylesheet" id="custom_wp_admin_css"  href="<?php echo get_stylesheet_directory_uri() . '/lib/css/login.css'; ?>" type="text/css" media="all" />
+<?php }
+
+
+
+
+
 
 add_filter( 'wp_mail_from_name', 'bfg_mail_from_name' );
 /**

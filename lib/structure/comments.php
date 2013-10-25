@@ -410,7 +410,7 @@ function machina_comment_form_args( array $defaults ) {
 
 	$args = array(
 		'comment_field'        => $comment_field,
-		'title_reply'          => __( 'Speak Your Mind', 'machina' ),
+		'title_reply'          => __( 'Join the Discussion', 'machina' ),
 		'comment_notes_before' => '',
 		'comment_notes_after'  => '',
 		'fields'               => array(
