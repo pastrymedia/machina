@@ -1,7 +1,6 @@
 <?php
 /*
 Plugin Name: Machina Featured Images
-Plugin URI: http://www.wpsmith.net/machina-featured-images
 Description: The first generation of this plugin will set a default image for post thumbnails for the Machina framework.
 Version: 0.4.1
 License: GPLv2

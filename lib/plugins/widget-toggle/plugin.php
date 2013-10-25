@@ -1,10 +1,7 @@
 <?php
 /*
 Plugin Name: Machina Widget Toggle
-Plugin URI: https://github.com/aryaprakasa/machina-widget-toggle
 Description: Machina widget toggle add additional widget area with toggle.
-Author: Arya Prakasa
-Author URI: http://prakasa.me/
 
 Version: 0.3
 

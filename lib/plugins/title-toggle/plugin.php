@@ -37,7 +37,6 @@ class BE_Title_Toggle {
 
 	/**
 	 * Sitewide Setting - Register Defaults
-	 * @link http://www.billerickson.net/machina-theme-options/
 	 *
 	 * @param array $defaults
 	 * @return array modified defaults
@@ -52,7 +51,6 @@ class BE_Title_Toggle {
 
 	/**
 	 * Sitewide Setting - Sanitization
-	 * @link http://www.billerickson.net/machina-theme-options/
 	 *
 	 */
 	function sanitization() {
@@ -66,7 +64,6 @@ class BE_Title_Toggle {
 
 	/**
 	 * Sitewide Setting - Register Metabox
-	 * @link http://www.billerickson.net/machina-theme-options/
 	 *
 	 * @param string, Machina theme settings page hook
 	 */
@@ -77,7 +74,6 @@ class BE_Title_Toggle {
 
 	/**
 	 * Sitewide Setting - Create Metabox
-	 * @link http://www.billerickson.net/machina-theme-options/
 	 *
 	 */
 	function create_sitewide_metabox() {
@@ -90,7 +86,6 @@ class BE_Title_Toggle {
 
 	/**
 	 * Create Page Specific Metaboxes
-	 * @link http://www.billerickson.net/wordpress-metaboxes/
 	 *
 	 * @param array $meta_boxes, current metaboxes
 	 * @return array $meta_boxes, current + new metaboxes
