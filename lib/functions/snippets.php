@@ -299,7 +299,6 @@ add_filter( 'machina_post_info', 'gs_post_info_filter' );
 /**
  * Customize the post info function
  *
- * @link http://my.studiopress.com/docs/shortcode-reference/
  * @param  string $post_info Default post info.
  * (default: '[post_date] ' . __( 'by', 'machina' ) . ' [post_author_posts_link] [post_comments] [post_edit]')
  * @return string Modified post info.
@@ -316,7 +315,6 @@ add_filter( 'machina_post_meta', 'gs_post_meta_filter' );
 /**
  * Customize the post meta function
  *
- * @link http://my.studiopress.com/docs/shortcode-reference/
  * @param  string $post_meta Default post meta.
  * (default: '[post_categories] [post_tags]')
  * @return string Modified post meta.

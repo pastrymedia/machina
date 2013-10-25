@@ -769,7 +769,6 @@ function bfg_gallery_style( $css ) {
 /**
  * Customize the excerpt text, when using the <!--more--> tag
  *
- * See: http://my.studiopress.com/snippets/post-excerpts/
  *
  * @since 2.0.16
  */
@@ -783,8 +782,6 @@ function bfg_more_tag_excerpt_link() {
 // add_filter( 'get_the_content_more_link', 'bfg_truncated_excerpt_link' );
 /**
  * Customize the excerpt text, when using automatic truncation
- *
- * See: http://my.studiopress.com/snippets/post-excerpts/
  *
  * @since 2.0.16
  */

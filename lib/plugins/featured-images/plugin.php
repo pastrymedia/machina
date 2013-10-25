@@ -4,24 +4,7 @@ Plugin Name: Machina Featured Images
 Plugin URI: http://www.wpsmith.net/machina-featured-images
 Description: The first generation of this plugin will set a default image for post thumbnails for the Machina framework.
 Version: 0.4.1
-Author: Travis Smith
-Author URI: http://www.wpsmith.net/
 License: GPLv2
-
-    Copyright YEAR  PLUGIN_AUTHOR_NAME  (email : PLUGIN AUTHOR EMAIL)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 define( 'GFI_DOMAIN' , 'machina-featured-images' );
@@ -49,7 +32,6 @@ add_action( 'get_header', 'gfi_remove_do_post_image' );
  * Replace some machina_* functions hooked into somewhere for some gfi_* functions
  * of the same suffix, at the same hook and priority
  *
- * @author Gary Jones
  *
  * @global array $wp_filter
  */

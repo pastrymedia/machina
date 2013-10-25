@@ -75,7 +75,7 @@ class Machina_Single_Breadcrumbs_Admin {
 			'<p>'  . __( 'The breadcrumb title field accepts plain text (markup is stripped out). If left blank, then the entry title will be used as the default breadcrumb.', 'machina-single-breadcrumbs' ) . '</p>' .
 			sprintf(
 				'<p><a href="%s">%s</a></p>',
-        		esc_url( 'http://github.com/GaryJones/machina-single-breadcrumbs' ),
+        		esc_url( 'http://github.com/machina-single-breadcrumbs' ),
         		__( 'Machina Single Breadcrumbs', 'machina-single-breadcrumbs' )
         	);
 

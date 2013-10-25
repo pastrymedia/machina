@@ -56,7 +56,7 @@ function gencwooc_setup() {
 	/** Add Machina Layout and SEO options to Product edit screen */
 	add_post_type_support( 'product', array( 'machina-layouts', 'machina-seo' ) );
 
-	/** Add Studiopress plugins support */
+	/** Add plugins support */
 	add_post_type_support( 'product', array( 'machina-simple-sidebars', 'machina-custom-menus' ) );
 
 	/** Take control of shop template loading */
