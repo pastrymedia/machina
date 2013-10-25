@@ -51,7 +51,13 @@ function machina_footer_widget_areas() {
 		dynamic_sidebar( 'footer-' . $counter );
 		$widgets = ob_get_clean();
 
-		$inside .= sprintf( '<div class="footer-widgets-%d widget-area">%s</div>', $counter, $widgets );
+		//$inside .= sprintf( '<div class="footer-widgets-%d widget-area">%s</div>', $counter, $widgets );
+
+		/** Dynamically create column classes. */
+		$class = 1 == (int) $counter ? 'first ' : '';
+		$class .= gs_column_class( $footer_widgets );
+
+		$inside .= sprintf( '<div class="footer-widgets-%1$d widget-area %2$s">%3$s</div>', $counter, $class, $widgets );
 
 		$counter++;
 

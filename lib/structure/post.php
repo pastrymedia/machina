@@ -37,12 +37,18 @@ function machina_reset_loops() {
 	add_action( 'machina_entry_content', 'machina_do_post_content_nav', 12 );
 	add_action( 'machina_entry_content', 'machina_do_post_permalink', 14 );
 
+	//Enable Post Navigation
+	add_action( 'machina_after_entry_content', 'machina_prev_next_post_nav', 5 );
+
 	add_action( 'machina_entry_footer', 'machina_entry_footer_markup_open', 5 );
 	add_action( 'machina_entry_footer', 'machina_entry_footer_markup_close', 15 );
 	add_action( 'machina_entry_footer', 'machina_post_meta' );
 
 	add_action( 'machina_after_entry', 'machina_do_author_box_single', 8 );
 	add_action( 'machina_after_entry', 'machina_get_comments_template' );
+
+	// Add Widget Area After Post
+	add_action('machina_after_post', 'machina_do_after_post_widget');
 
 	//* Pre-HTML5 hooks
 	add_action( 'machina_before_post_title', 'machina_do_post_format_image' );
@@ -729,4 +735,20 @@ function machina_prev_next_post_nav() {
 
 	echo '</div>';
 
+}
+
+/**
+ * Adds the after post widget area
+ * @return [type] [description]
+ */
+function machina_do_after_post_widget() {
+ 	if ( is_single() ) {
+ 	machina_widget_area(
+                'after-post',
+                array(
+                        'before' => '<aside class="sidebar sidebar-after-post widget-area"><div class="">',
+                        'after' => '</div></aside><!-- end .sidebar-after-post -->',
+                )
+        );
+ }
 }

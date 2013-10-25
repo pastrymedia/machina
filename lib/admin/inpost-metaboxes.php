@@ -180,7 +180,8 @@ add_action( 'save_post', 'machina_inpost_scripts_save', 1, 2 );
  */
 function machina_inpost_scripts_save( $post_id, $post ) {
 
-	if ( ! isset( $_POST['machina_seo'] ) )
+	/**	Verify the nonce and capability */
+	if ( ! isset( $_POST['machina_scripts'] ) )
 		return;
 
 	 //* If user doesn't have unfiltered html capability, don't try to save
@@ -188,7 +189,7 @@ function machina_inpost_scripts_save( $post_id, $post ) {
 		return;
 
 	//* Merge user submitted options with fallback defaults
-	$data = wp_parse_args( $_POST['machina_seo'], array(
+	$data = wp_parse_args( $_POST['machina_scripts'], array(
 		'_machina_scripts' => '',
 	) );
 

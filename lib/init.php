@@ -57,11 +57,14 @@ function machina_theme_support() {
 		add_theme_support( 'machina-menus', array(
 			'primary'   => __( 'Primary Navigation Menu', 'machina' ),
 			'secondary' => __( 'Secondary Navigation Menu', 'machina' ),
+			'footer'    => __( 'Footer Navigation Menu', 'machina' ),
+			'mobile'    => __( 'Mobile Navigation Menu', 'machina' ),
 		) );
 
 	//* Maybe add support for structural wraps
 	if ( ! current_theme_supports( 'machina-structural-wraps' ) )
-		add_theme_support( 'machina-structural-wraps', array( 'header', 'menu-primary', 'menu-secondary', 'footer-widgets', 'footer' ) );
+		add_theme_support( 'machina-structural-wraps', array( 'header', 'nav',
+		'subnav', 'inner', 'menu-primary', 'menu-secondary', 'footer-widgets', 'footer' ) );
 
 	//* Turn on HTML5, responsive viewport & footer widgets if Machina is active
 	if ( ! is_child_theme() ) {
@@ -69,6 +72,26 @@ function machina_theme_support() {
 		add_theme_support( 'machina-responsive-viewport' );
 		add_theme_support( 'machina-footer-widgets', 3 );
 	}
+
+	/**
+	 * 01 Set width of oEmbed
+	 * machina_content_width() will be applied; Filters the content width based on the user selected layout.
+	 *
+	 * @see machina_content_width()
+	 * @param integer $default Default width
+	 * @param integer $small Small width
+	 * @param integer $large Large width
+	 */
+	$content_width = apply_filters( 'content_width', 600, 430, 920 );
+
+	//Custom Image Sizes
+	add_image_size( 'featured-image', 225, 160, TRUE );
+
+	// Enable Custom Background
+	//add_theme_support( 'custom-background' );
+
+	// Enable Custom Header
+	//add_theme_support('machina-custom-header');
 
 }
 
@@ -100,6 +123,8 @@ function machina_constants() {
 	define( 'PARENT_DB_VERSION', '2007' );
 	define( 'PARENT_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1377061200' ) );
 #	define( 'PARENT_THEME_RELEASE_DATE', 'TBD' );
+	define( 'PARENT_THEME_URL', 'http://www.google.com' );
+
 
 	//* Define Directory Location Constants
 	define( 'PARENT_DIR', get_template_directory() );

@@ -129,6 +129,15 @@ function machina_register_default_widget_areas() {
 		)
 	);
 
+	machina_register_sidebar(
+		array(
+			'id'               => 'after-post',
+			'name'             => __( 'After Post', 'machina' ),
+			'description'      => __( 'This will show up after every post.', 'machina' ),
+			'_machina_builtin' => true,
+		)
+	);
+
 }
 
 add_action( 'after_setup_theme', 'machina_register_footer_widget_areas' );

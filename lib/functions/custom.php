@@ -11,6 +11,79 @@
  * @link    http://my.machinathemes.com/themes/machina/
  */
 
+/* Constants
+------------------------------------------------------------ */
+
+add_action( 'machina_init', 'gs_constants', 15 );
+/**
+ * This function defines the Machina Child theme constants
+ *
+ * Data Constants: CHILD_SETTINGS_FIELD, CHILD_DOMAIN, CHILD_THEME_VERSION
+ * CHILD_THEME_NAME, CHILD_THEME_URL, CHILD_DEVELOPER, CHILD_DEVELOPER_URL
+ * Directories: CHILD_LIB_DIR, CHILD_IMAGES_DIR, CHILD_ADMIN_DIR, CHILD_JS_DIR, CHILD_CSS_DIR
+ * URLs: CHILD_LIB, CHILD_IMAGES, CHILD_ADMIN, CHILD_JS, CHILD_CSS
+ *
+ * @since 1.1.0
+ */
+function gs_constants() {
+  $theme = wp_get_theme();
+
+  // Child theme (Change but do not remove)
+    /** @type constant Child Theme Options/Settings. */
+    define( 'CHILD_SETTINGS_FIELD', $theme->get('TextDomain') . 'settings' );
+
+    /** @type constant Text Domain. */
+    define( 'CHILD_DOMAIN', $theme->get('TextDomain') );
+
+    /** @type constant Child Theme Version. */
+    define( 'CHILD_THEME_VERSION', $theme->Version );
+
+    /** @type constant Child Theme Name, used in footer. */
+    define( 'CHILD_THEME_NAME', $theme->Name );
+
+    /** @type constant Child Theme URL, used in footer. */
+    define( 'CHILD_THEME_URL', $theme->get('ThemeURI') );
+
+  // Developer Information, see lib/admin/admin-functions.php
+    /** @type constant Child Theme Developer, used in footer. */
+    define( 'CHILD_DEVELOPER', $theme->Author );
+
+    /** @type constant Child Theme Developer URL, used in footer. */
+    define( 'CHILD_DEVELOPER_URL', $theme->{'Author URI'}  );
+
+  // Define Directory Location Constants
+    /** @type constant Child Theme Library/Includes URL Location. */
+    define( 'CHILD_LIB_DIR',    CHILD_DIR . '/lib' );
+
+    /** @type constant Child Theme Images URL Location. */
+    define( 'CHILD_IMAGES_DIR', CHILD_DIR . '/images' );
+
+    /** @type constant Child Theme Admin URL Location. */
+    define( 'CHILD_ADMIN_DIR',  CHILD_LIB_DIR . '/admin' );
+
+    /** @type constant Child Theme JS URL Location. */
+    define( 'CHILD_JS_DIR',     CHILD_DIR .'/js' );
+
+    /** @type constant Child Theme JS URL Location. */
+    define( 'CHILD_CSS_DIR',    CHILD_DIR .'/css' );
+
+  // Define URL Location Constants
+    /** @type constant Child Theme Library/Includes URL Location. */
+    define( 'CHILD_LIB',    CHILD_URL . '/lib' );
+
+    /** @type constant Child Theme Images URL Location. */
+    define( 'CHILD_IMAGES', CHILD_URL . '/images' );
+
+    /** @type constant Child Theme Admin URL Location. */
+    define( 'CHILD_ADMIN',  CHILD_LIB . '/admin' );
+
+    /** @type constant Child Theme JS URL Location. */
+    define( 'CHILD_JS',     CHILD_URL .'/js' );
+
+    /** @type constant Child Theme JS URL Location. */
+    define( 'CHILD_CSS',    CHILD_URL .'/css' );
+}
+
 
 add_action( 'init', 'machina_add_editor_styles' );
 /**
@@ -23,6 +96,247 @@ add_action( 'init', 'machina_add_editor_styles' );
  */
 function machina_add_editor_styles() {
 
-	add_editor_style( get_stylesheet_uri() );
+  $editor_style = MACHINA_CSS_URL . '/editor-style.css' ;
 
+	//add_editor_style( get_stylesheet_uri() );
+
+  add_editor_style( $editor_style );
+
+}
+
+/* Editor Style
+------------------------------------------------------------ */
+
+//add_filter( 'mce_buttons_3', 'gs_mce_buttons_3' );
+/**
+ * Show the style dropdown on the THIRD row of the editor toolbar.
+ *
+ * This code also adds the font family and font size dropdowns too, along with a horizontal rule button, and backcolor.
+ *
+ * @link http://www.tinymce.com/wiki.php/Buttons/controls
+ * @param array $buttons Exising buttons
+ * @return array $buttons Amended buttons
+ */
+function gs_mce_buttons_3( array $buttons ) {
+
+  $additional_buttons = array( 'styleselect', 'fontselect', 'fontsizeselect', 'hr', 'backcolor' );
+
+  return array_unique( array_merge( $buttons, $additional_buttons ) );
+
+}
+
+add_filter( 'tiny_mce_before_init', 'gs_mce_before_init' );
+/**
+ * Add column entries to the style dropdown.
+ *
+ * @param array $settings Existing settings for all toolbar items
+ * @return array $settings Amended settings
+ */
+function gs_mce_before_init( array $settings ) {
+
+  $style_formats = array(
+    array( 'title' => __( 'Columns', 'machina' ), ),
+    array(
+      'title' => __( 'First Half', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-half first',
+    ),
+    array(
+      'title' => __( 'Half', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-half',
+    ),
+    array(
+      'title' => __( 'First Third', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-third first',
+    ),
+    array(
+      'title' => __( 'Third', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-third',
+    ),
+    array(
+      'title' => __( 'First Quarter', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-fourth first',
+    ),
+    array(
+      'title' => __( 'Quarter', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-fourth',
+    ),
+    array(
+      'title' => __( 'First Fifth', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-fifth first',
+    ),
+    array(
+      'title' => __( 'Fifth', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-fifth',
+    ),
+    array(
+      'title' => __( 'First Sixth', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-sixth first',
+    ),
+    array(
+      'title' => __( 'Sixth', 'machina' ),
+      'block' => 'div',
+      'classes' => 'one-sixth',
+    ),
+  );
+
+  // Check if there are some styles already
+  if ( isset( $settings['style_formats'] ) ) {
+    // Decode any existing style formats
+    $existing_style_formats = json_decode( $settings['style_formats'] );
+
+    // Merge our new formats with any existing formats and re-encode
+    $settings['style_formats'] = json_encode( array_merge( (array) $existing_style_formats, $style_formats ) );
+  } else {
+    $settings['style_formats'] = json_encode( $style_formats );
+  }
+
+  return $settings;
+
+}
+
+/* Admin Footer
+------------------------------------------------------------ */
+
+add_filter( 'admin_footer_text', 'gs_admin_footer' );
+/**
+ * Modify Admin Footer Text and Logo
+ *
+ * @todo change this text
+ *
+ */
+function gs_admin_footer() {
+  echo '<span id="footer-thankyou">Thank you for creating with <a href="http://wordpress.org/">WordPress</a> &amp; <a href="' . CHILD_THEME_URL . '">' . CHILD_THEME_NAME . '</a> designed by <a href="' . CHILD_DEVELOPER_URL . '">' . CHILD_DEVELOPER . '</a></span>';
+}
+
+
+/* Hook Utilities
+------------------------------------------------------------ */
+
+/**
+ * Moves a function to a new hook
+ *
+ * @since 1.1.0
+ * @global array $wp_filter
+ * @param string Function name.
+ * @param string Hook to place function.
+ * @param string Priority (defaults to 10).
+ * @param string Number of accepted arguments (defaults to 2).
+ */
+function gs_move_function( $function, $newhook, $priority = 10, $args = 2 ) {
+  gs_remove_function( $function );
+  add_action( $newhook, $function, $priority, $args );
+}
+
+/**
+ * Removes a function hooked into somewhere
+ *
+ * @since 1.1.0
+ * @param string function name
+ * @global array $wp_filter
+ */
+function gs_remove_function( $function ) {
+    global $wp_filter;
+
+    // Loop through all hooks (yes, stored under the $wp_filter global)
+    foreach ( $wp_filter as $hook => $priority)  {
+
+    // has_action returns int for the priority
+    if ( $priority = has_action( $hook, $function ) ) {
+
+    // If there's a function hooked in, remove the machina_* function
+      // from whichever hook we're looping through at the time.
+      remove_action( $hook, $function, $priority );
+    }
+    }
+}
+
+/**
+ * Replace machina_* functions hooked into somewhere for gs_* functions
+ * of the same suffix, at the same hook and priority
+ *
+ * Run at get_header to catch all customisations in functions.php
+ *
+ *
+ * @global array $wp_filter
+ * @param  array $functions Array of function names without machina_ prefix.
+ */
+function gs_replace_functions( $functions ) {
+
+  global $wp_filter;
+
+  // Loop through all hooks (yes, stored under the $wp_filter global)
+  foreach ( $wp_filter as $hook => $priority)  {
+
+    // Loop through our array of functions for each hook
+    foreach( $functions as $function) {
+
+      // has_action returns int for the priority
+      if ( $priority = has_action( $hook, 'machina_' . $function ) ) {
+
+        // If there's a function hooked in, remove the machina_* function
+        // from whichever hook we're looping through at the time.
+        remove_action( $hook, 'machina_' . $function, $priority );
+
+        // Add a replacement function in at the same time.
+        add_action( $hook, 'gs_' . $function, $priority );
+      }
+    }
+  }
+
+}
+
+/* Column Classes
+------------------------------------------------------------ */
+
+/**
+ * Gets the column class for 2-6 footer widgets.
+ *
+ * @since 1.1.0
+ *
+ * @return string Column class name.
+ */
+function gs_column_class( $i ) {
+  switch ( $i ) {
+    case 1:
+      return '';
+    case 2:
+      return 'one-half';
+    case 3:
+      return 'one-third';
+    case 4:
+      return 'one-fourth';
+    case 5:
+      return 'one-fifth';
+    case 6:
+      return 'one-sixth';
+    default:
+      return '';
+  }
+}
+
+/* Pretty Photo Init (Need to add pretty photo)
+------------------------------------------------------------ */
+
+//add_action( 'wp_footer', 'gs_init_pretty_photo' );
+/**
+ * Instantiate Pretty Photo
+ *
+ * @param array $args Future Development
+ */
+function gs_init_pretty_photo( $args = array() ) { ?>
+<script type="text/javascript" charset="utf-8">
+  jQuery(document).ready(function($){
+    $("a[href$='.jpg'], a[href$='.gif'], a[href$='.png'], .prettyPhoto").prettyPhoto();
+  });
+</script>
+<?php
 }
