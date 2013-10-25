@@ -114,7 +114,7 @@ class Machina_Header_Nav {
 		$nav_markup_open .= machina_structural_wrap( 'menu-header', 'open', 0 );
 
 		$nav_markup_close  = machina_structural_wrap( 'menu-header', 'close', 0 );
-		$nav_markup_close .= machina_html5() ? '</nav>' : '</div>';
+		$nav_markup_close .= '</nav>';
 
 		$nav_output = $nav_markup_open . $nav . $nav_markup_close;
 

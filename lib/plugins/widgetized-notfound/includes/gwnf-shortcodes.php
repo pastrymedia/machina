@@ -112,7 +112,7 @@ function ddw_gwnf_shortcode_search( $atts ) {
 		'<%1$s class="gwnf-search-area%2$s">%3$s</%1$s>',
 		esc_attr( $atts[ 'wrapper' ] ),
 		! empty( $atts[ 'class' ] ) ? esc_attr( $atts[ 'class' ] ) : '',
-		( function_exists( 'machina_html5' ) && machina_html5() ) ? $html5_search_form : $xhtml_search_form
+		$html5_search_form
 	);
 
 	/** Return the output - filterable */

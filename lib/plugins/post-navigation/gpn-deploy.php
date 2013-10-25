@@ -103,9 +103,6 @@ function gpn_generate_css(){
 }
 
 //Adds Post Navigation Below every single post page
-if(!machina_html5()){
-	add_action( 'machina_after_post_content', 'gpn_after_post' );
-}
 add_action( 'machina_entry_footer', 'gpn_after_post' );
 add_action('wp_enqueue_scripts', 'gpn_custom_script');
 

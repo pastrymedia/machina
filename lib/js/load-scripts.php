@@ -32,7 +32,6 @@ add_action( 'wp_enqueue_scripts', 'machina_load_scripts' );
  *
  * @since 0.2.0
  *
- * @uses machina_html5()      Check for HTML5 support.
  * @uses machina_get_option() Get theme setting value.
  */
 function machina_load_scripts() {
@@ -49,15 +48,10 @@ add_action( 'wp_head', 'machina_html5_ie_fix' );
  *
  * @since 2.0.0
  *
- * @uses machina_html5() Check for HTML5 support.
- *
  * @return Return early if HTML5 not supported.
  *
  */
 function machina_html5_ie_fix() {
-
-	if ( ! machina_html5() )
-		return;
 
 	echo '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->' . "\n";
 

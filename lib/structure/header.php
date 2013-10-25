@@ -36,39 +36,21 @@ add_action( 'machina_doctype', 'machina_do_doctype' );
  * @since 1.3.0
  *
  * @uses machina_html()          Check for HTML5 support.
- * @uses machina_html5_doctype() Markup for HTML5 output.
- * @uses machina_xhtml_doctype() Markup for XHTML output.
  */
 function machina_do_doctype() {
 
-	if ( machina_html5() )
-		machina_html5_doctype();
-	else
-		machina_xhtml_doctype();
+		machina_html_doctype();
 
 }
 
-/**
- * XHTML 1.0 Transitional doctype markup.
- *
- * @since 2.0.0
- */
-function machina_xhtml_doctype() {
 
-	?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>>
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-<?php
-
-}
 
 /**
  * HTML5 doctype markup.
  *
  * @since 2.0.0
  */
-function machina_html5_doctype() {
+function machina_html_doctype() {
 
 	?><!DOCTYPE html>
 <html <?php language_attributes( 'html' ); ?>>
@@ -743,7 +725,7 @@ function machina_custom_header() {
 		'width'               => $args['width'],
 		'height'              => $args['height'],
 		'random-default'      => false,
-		'header-selector'     => machina_html5() ? '.site-header' : '#header',
+		'header-selector'     => '.site-header',
 		'wp-head-callback'    => $args['header_callback'],
 		'admin-head-callback' => $args['admin_header_callback'],
 	) );
@@ -782,12 +764,12 @@ function machina_custom_header_style() {
 		return;
 
 	$header_selector = get_theme_support( 'custom-header', 'header-selector' );
-	$title_selector  = machina_html5() ? '.custom-header .site-title'       : '.custom-header #title';
-	$desc_selector   = machina_html5() ? '.custom-header .site-description' : '.custom-header #description';
+	$title_selector  = '.custom-header .site-title';
+	$desc_selector   = '.custom-header .site-description';
 
 	//* Header selector fallback
 	if ( ! $header_selector )
-		$header_selector = machina_html5() ? '.custom-header .site-header' : '.custom-header #header';
+		$header_selector = '.custom-header .site-header';
 
 	//* Header image CSS, if exists
 	if ( $header_image )
@@ -900,7 +882,6 @@ add_action( 'machina_site_title', 'machina_seo_site_title' );
  * @since 1.1.0
  *
  * @uses machina_get_seo_option() Get SEO setting value.
- * @uses machina_html5()          Check or HTML5 support.
  */
 function machina_seo_site_title() {
 
@@ -913,12 +894,12 @@ function machina_seo_site_title() {
 	//* A little fallback, in case an SEO plugin is active
 	$wrap = is_home() && ! machina_get_seo_option( 'home_h1_on' ) ? 'h1' : $wrap;
 
-	//* And finally, $wrap in h1 if HTML5 & semantic headings enabled
-	$wrap = machina_html5() && machina_get_seo_option( 'semantic_headings' ) ? 'h1' : $wrap;
+	//* And finally, $wrap in h1 if semantic headings enabled
+	$wrap = machina_get_seo_option( 'semantic_headings' ) ? 'h1' : $wrap;
 
 	//* Build the title
-	$title  = machina_html5() ? sprintf( "<{$wrap} %s>", machina_attr( 'site-title' ) ) : sprintf( '<%s id="title">%s</%s>', $wrap, $inside, $wrap );
-	$title .= machina_html5() ? "{$inside}</{$wrap}>" : '';
+	$title  = sprintf( "<{$wrap} %s>", machina_attr( 'site-title' ) ) ;
+	$title .= "{$inside}</{$wrap}>";
 
 	//* Echo (filtered)
 	echo apply_filters( 'machina_seo_title', $title, $inside, $wrap );
@@ -936,7 +917,6 @@ add_action( 'machina_site_description', 'machina_seo_site_description' );
  * @since 1.1.0
  *
  * @uses machina_get_seo_option() Get SEO setting value.
- * uses machina_html5()           Check for HTML5 support.
  */
 function machina_seo_site_description() {
 
@@ -946,12 +926,12 @@ function machina_seo_site_description() {
 	//* Determine which wrapping tags to use
 	$wrap = is_home() && 'description' === machina_get_seo_option( 'home_h1_on' ) ? 'h1' : 'p';
 
-	//* And finally, $wrap in h2 if HTML5 & semantic headings enabled
-	$wrap = machina_html5() && machina_get_seo_option( 'semantic_headings' ) ? 'h2' : $wrap;
+	//* And finally, $wrap in h2 if semantic headings enabled
+	$wrap = machina_get_seo_option( 'semantic_headings' ) ? 'h2' : $wrap;
 
 	//* Build the description
-	$description  = machina_html5() ? sprintf( "<{$wrap} %s>", machina_attr( 'site-description' ) ) : sprintf( '<%s id="description">%s</%s>', $wrap, $inside, $wrap );
-	$description .= machina_html5() ? "{$inside}</{$wrap}>" : '';
+	$description  = sprintf( "<{$wrap} %s>", machina_attr( 'site-description' ) ) ;
+	$description .= "{$inside}</{$wrap}>";
 
 	//* Output (filtered)
 	$output = $inside ? apply_filters( 'machina_seo_description', $description, $inside, $wrap ) : '';
@@ -965,7 +945,6 @@ function machina_seo_site_description() {
  *
  * @since 1.9.0
  *
- * @uses machina_html5() Check for HTML5 support.
  *
  * @param  array $args Header menu args.
  *
@@ -973,7 +952,7 @@ function machina_seo_site_description() {
  */
 function machina_header_menu_args( $args ) {
 
-	$args['container']   = machina_html5() ? '' : 'div';
+	$args['container']   = '';
 	$args['menu_class'] .= ' machina-nav-menu';
 
 	return $args;
@@ -985,16 +964,12 @@ function machina_header_menu_args( $args ) {
  *
  * @since 2.0.0
  *
- * @uses machina_html5() Check for HTML5 support.
  *
  * @param  $menu Menu output.
  *
  * @return string $menu Modified menu output.
  */
 function machina_header_menu_wrap( $menu ) {
-
-	if ( ! machina_html5() )
-		return $menu;
 
 	return sprintf( '<nav %s>', machina_attr( 'nav-header' ) ) . $menu . '</nav>';
 

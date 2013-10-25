@@ -30,7 +30,6 @@
  *
  * @since 1.9.0
  *
- * @uses machina_html5() Check for HTML5 support.
  * @uses machina_attr()  Contextual attributes.
  *
  * @param array $args Array of arguments.
@@ -57,12 +56,9 @@ function machina_markup( $args = array() ) {
 		return '';
 
 	//* If HTML5, return HTML5 tag. Maybe add attributes. Else XHTML.
-	if ( machina_html5() ) {
 		$tag = $args['context'] ? sprintf( $args['html5'], machina_attr( $args['context'] ) ) : $args['html5'];
-	}
-	else {
-		$tag = $args['xhtml'];
-	}
+
+
 
 	//* Contextual filter
 	$tag = $args['context'] ? apply_filters( 'machina_markup_' . $args['context'] . '_output', $tag, $args ) : $tag;

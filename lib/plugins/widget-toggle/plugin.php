@@ -146,7 +146,7 @@ class Machina_Widget_Toggle {
 
 					echo '</div>';
 
-				echo machina_html5() ? '</aside>' : '</div>';
+				echo '</aside>';
 				$toggle = machina_get_option( 'toggle_text', GWT_SETTINGS ) ? machina_get_option( 'toggle_text', GWT_SETTINGS ) : '<i class="toggle-icon"></i>';
 				echo '<div class="widget-toggle-control"><a class="hide-widget-toggle" href="#">'. $toggle .'</a></div>';
 			echo '</div>';

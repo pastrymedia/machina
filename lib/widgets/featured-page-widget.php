@@ -106,16 +106,14 @@ class Machina_Featured_Page extends WP_Widget {
 
 			if ( ! empty( $instance['show_title'] ) ) {
 
-				if ( machina_html5() )
-					printf( '<header class="entry-header"><h2 class="entry-title"><a href="%s" title="%s">%s</a></h2></header>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
-				else
-					printf( '<h2><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+				printf( '<header class="entry-header"><h2 class="entry-title"><a href="%s" title="%s">%s</a></h2></header>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+
 
 			}
 
 			if ( ! empty( $instance['show_content'] ) ) {
 
-				echo machina_html5() ? '<div class="entry-content">' : '';
+				echo '<div class="entry-content">';
 
 				if ( empty( $instance['content_limit'] ) ) {
 
@@ -128,7 +126,7 @@ class Machina_Featured_Page extends WP_Widget {
 					the_content_limit( (int) $instance['content_limit'], esc_html( $instance['more_text'] ) );
 				}
 
-				echo machina_html5() ? '</div>' : '';
+				echo '</div>';
 
 			}
 

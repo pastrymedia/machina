@@ -140,26 +140,24 @@ class Machina_Featured_Post extends WP_Widget {
 			}
 
 			if ( $instance['show_title'] )
-				echo machina_html5() ? '<header class="entry-header">' : '';
+				echo '<header class="entry-header">';
 
 				if ( ! empty( $instance['show_title'] ) ) {
 
-					if ( machina_html5() )
-						printf( '<h2 class="entry-title"><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
-					else
-						printf( '<h2><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+					printf( '<h2 class="entry-title"><a href="%s" title="%s">%s</a></h2>', get_permalink(), the_title_attribute( 'echo=0' ), get_the_title() );
+
 
 				}
 
 				if ( ! empty( $instance['show_byline'] ) && ! empty( $instance['post_info'] ) )
-					printf( machina_html5() ? '<p class="entry-meta">%s</p>' : '<p class="byline post-info">%s</p>', do_shortcode( $instance['post_info'] ) );
+					printf( '<p class="entry-meta">%s</p>' , do_shortcode( $instance['post_info'] ) );
 
 			if ( $instance['show_title'] )
-				echo machina_html5() ? '</header>' : '';
+				echo '</header>';
 
 			if ( ! empty( $instance['show_content'] ) ) {
 
-				echo machina_html5() ? '<div class="entry-content">' : '';
+				echo '<div class="entry-content">';
 
 				if ( 'excerpt' == $instance['show_content'] ) {
 					the_excerpt();
@@ -180,7 +178,7 @@ class Machina_Featured_Post extends WP_Widget {
 
 				}
 
-				echo machina_html5() ? '</div>' : '';
+				echo '</div>';
 
 			}
 

@@ -79,7 +79,6 @@ add_filter( 'post_class', 'machina_entry_post_class' );
  *
  * @since 1.9.0
  *
- * @uses machina_html5() Check for HTML5 support.
  *
  * @param array Existing post classes.
  *
@@ -90,9 +89,8 @@ function machina_entry_post_class( $classes ) {
 	//* Add "entry" to the post class array
 	$classes[] = 'entry';
 
-	//* Remove "hentry" from post class array, if HTML5
-	if ( machina_html5() )
-		$classes = array_diff( $classes, array( 'hentry' ) );
+	//* Remove "hentry" from post class array.
+	$classes = array_diff( $classes, array( 'hentry' ) );
 
 	return $classes;
 
@@ -187,7 +185,6 @@ add_action( 'machina_post_title', 'machina_do_post_title' );
  *
  * @since 1.1.0
  *
- * @uses machina_html5()          Check for HTML5 support.
  * @uses machina_get_SEO_option() Get SEO setting value.
  * @uses machina_markup()         Contextual markup.
  *
@@ -207,8 +204,8 @@ function machina_do_post_title() {
 	//* Wrap in H1 on singular pages
 	$wrap = is_singular() ? 'h1' : 'h2';
 
-	//* Also, if HTML5 with semantic headings, wrap in H1
-	$wrap = machina_html5() && machina_get_seo_option( 'semantic_headings' ) ? 'h1' : $wrap;
+	//* Also, if semantic headings, wrap in H1
+	$wrap = machina_get_seo_option( 'semantic_headings' ) ? 'h1' : $wrap;
 
 	//* Build the output
 	$output = machina_markup( array(
@@ -218,7 +215,7 @@ function machina_do_post_title() {
 		'echo'    => false,
 	) );
 
-	$output .= machina_html5() ? "{$title}</{$wrap}>" : '';
+	$output .= "{$title}</{$wrap}>";
 
 	echo apply_filters( 'machina_post_title_output', "$output \n" );
 
@@ -353,7 +350,6 @@ add_action( 'machina_post_content', 'machina_do_post_content_nav' );
  * @since 2.0.0
  *
  * @uses machina_markup() Contextual markup.
- * @uses machina_html5()  Check for HTML5 support.
  */
 function machina_do_post_content_nav() {
 
@@ -364,7 +360,7 @@ function machina_do_post_content_nav() {
 				'context' => 'entry-pagination',
 				'echo'    => false,
 			) ) . __( 'Pages:', 'machina' ),
-		'after'  => machina_html5() ? '</div>' : '</p>',
+		'after'  => '</div>',
 	) );
 
 }
@@ -508,7 +504,6 @@ function machina_do_author_box_single() {
  *
  * @since 1.3.0
  *
- * @uses machina_html5() Check for HTML5 support.
  * @uses machina_attr()  Contextual attributes.
  *
  * @global WP_User $authordata Author (user) object.
@@ -529,7 +524,6 @@ function machina_author_box( $context = '', $echo = true ) {
 	$description   = wpautop( get_the_author_meta( 'description' ) );
 
 	//* The author box markup, contextual
-	if ( machina_html5() ) {
 
 		$title = apply_filters( 'machina_author_box_title', sprintf( '%s <span itemprop="name">%s</span>', __( 'About', 'machina' ), get_the_author() ), $context );
 
@@ -538,14 +532,8 @@ function machina_author_box( $context = '', $echo = true ) {
 		$pattern .= '<div class="author-box-content" itemprop="description">%s</div>';
 		$pattern .= '</section>';
 
-	}
-	else {
 
-		$title = apply_filters( 'machina_author_box_title', sprintf( '<strong>%s %s</strong>', __( 'About', 'machina' ), get_the_author() ), $context );
 
-		$pattern = 'single' === $context ? '<div class="author-box"><div>%s %s<br />%s</div></div>' : '<div class="author-box">%s<h1>%s</h1><div>%s</div></div>';
-
-	}
 
 	$output = apply_filters( 'machina_author_box', sprintf( $pattern, $gravatar, $title, $description ), $context, $pattern, $gravatar, $title, $description );
 

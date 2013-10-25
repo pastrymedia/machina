@@ -335,13 +335,12 @@ class Machina_Admin_SEO_Settings extends Machina_Admin_Boxes {
 	 * @uses \Machina_Admin::get_field_id()    Construct field ID.
 	 * @uses \Machina_Admin::get_field_name()  Construct field name.
 	 * @uses \Machina_Admin::get_field_value() Retrieve value of key under $this->settings_field.
-	 * @uses machina_html5() Check for HTML5 support.
 	 *
 	 * @see \Machina_Admin_SEO_Settings::metaboxes() Register meta boxes on the SEO Settings page.
 	 */
 	function homepage_box() {
 
-		if ( machina_html5() ) : ?>
+		 ?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'semantic_headings' ); ?>"><input type="checkbox" name="<?php echo $this->get_field_name( 'semantic_headings' ); ?>" id="<?php echo $this->get_field_id( 'semantic_headings' ); ?>" value="1" <?php checked( $this->get_field_value( 'semantic_headings' ) ); ?> />
 			<?php _e( 'Use semantic HTML5 page and section headings throughout site?', 'machina' ); ?></label>
@@ -349,9 +348,8 @@ class Machina_Admin_SEO_Settings extends Machina_Admin_Boxes {
 
 		<p><span class="description"><?php printf( __( 'HTML5 allows for multiple %s tags throughout the document source, provided they are the primary title for the section in which they appear. However, following this standard may have a marginal negative impact on SEO.', 'machina' ), machina_code( 'h1' ) ); ?></span></p>
 
-		<?php endif; ?>
 
-		<fieldset <?php echo machina_html5() ? 'id="machina_seo_h1_wrap"' : '';?>>
+		<fieldset <?php echo 'id="machina_seo_h1_wrap"';?>>
 			<legend><?php printf( __( 'Which text would you like to be wrapped in %s tags?', 'machina' ), machina_code( 'h1' ) ); ?></legend>
 
 			<p>

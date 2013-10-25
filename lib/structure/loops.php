@@ -66,19 +66,12 @@ function machina_do_loop() {
  *
  * @since 1.1.0
  *
- * @uses machina_html5()       Check for HTML5 support.
- * @uses machina_legacy_loop() XHTML loop.
  * @uses machina_attr()        Contextual attributes.
  *
  * @return null Return early after legacy loop if not supporting HTML5.
  */
 function machina_standard_loop() {
 
-	//* Use old loop hook structure if not supporting HTML5
-	if ( ! machina_html5() ) {
-		machina_legacy_loop();
-		return;
-	}
 
 	if ( have_posts() ) : while ( have_posts() ) : the_post();
 
@@ -101,70 +94,6 @@ function machina_standard_loop() {
 			do_action( 'machina_after_entry' );
 
 		endwhile; //* end of one post
-		do_action( 'machina_after_endwhile' );
-
-	else : //* if no posts exist
-		do_action( 'machina_loop_else' );
-	endif; //* end loop
-
-}
-
-/**
- * XHTML loop.
- *
- * This is called by {@link machina_standard_loop()} if the child theme does not support HTML5.
- *
- * It is a standard loop, and is meant to be executed, without modification, in most circumstances where content needs
- * to be displayed.
- *
- * It outputs basic wrapping HTML, but uses hooks to do most of its content output like title, content, post information
- * and comments.
- *
- * The action hooks called are:
- *
- *  - `machina_before_post`
- *  - `machina_before_post_title`
- *  - `machina_post_title`
- *  - `machina_after_post_title`
- *  - `machina_before_post_content`
- *  - `machina_post_content`
- *  - `machina_after_post_content`
- *  - `machina_after_post`
- *  - `machina_after_endwhile`
- *  - `machina_loop_else` (only if no posts were found)
- *
- * @since 2.0.0
- *
- * @global integer $loop_counter Increments on each loop pass.
- */
-function machina_legacy_loop() {
-
-	global $loop_counter;
-
-	$loop_counter = 0;
-
-	if ( have_posts() ) : while ( have_posts() ) : the_post();
-
-		do_action( 'machina_before_post' );
-
-		printf( '<div class="%s">', join( ' ', get_post_class() ) );
-
-			do_action( 'machina_before_post_title' );
-			do_action( 'machina_post_title' );
-			do_action( 'machina_after_post_title' );
-
-			do_action( 'machina_before_post_content' );
-			echo '<div class="entry-content">';
-				do_action( 'machina_post_content' );
-			echo '</div>'; //* end .entry-content
-			do_action( 'machina_after_post_content' );
-
-		echo '</div>'; //* end .entry
-
-		do_action( 'machina_after_post' );
-		$loop_counter++;
-
-	endwhile; //* end of one post
 		do_action( 'machina_after_endwhile' );
 
 	else : //* if no posts exist

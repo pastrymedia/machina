@@ -142,8 +142,6 @@ add_action( 'machina_footer', 'machina_do_footer' );
  * @todo cleanup function output
  * @since 1.0.1
  *
- * @uses machina_html5() Check for HTML5 support.
- *
  */
 function machina_do_footer() {
 

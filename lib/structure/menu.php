@@ -51,7 +51,6 @@ add_action( 'machina_after_header', 'machina_do_nav' );
  *
  * @uses machina_nav_menu_supported() Checks for support of specific nav menu.
  * @uses machina_markup()             Contextual markup.
- * @uses machina_html5()              Check for HTML5 support.
  * @uses machina_structural_wrap()    Adds optional internal wrap divs.
  */
 function machina_do_nav() {
@@ -87,7 +86,7 @@ function machina_do_nav() {
 		$nav_markup_open .= machina_structural_wrap( 'menu-primary', 'open', 0 );
 
 		$nav_markup_close  = machina_structural_wrap( 'menu-primary', 'close', 0 );
-		$nav_markup_close .= machina_html5() ? '</nav>' : '</div>';
+		$nav_markup_close .= '</nav>';
 
 		$nav_output = $nav_markup_open . $nav . $nav_markup_close;
 
@@ -111,7 +110,6 @@ add_action( 'machina_after_header', 'machina_do_subnav' );
  *
  * @uses machina_nav_menu_supported() Checks for support of specific nav menu.
  * @uses machina_markup()             Contextual markup.
- * @uses machina_html5()              Check for HTML5 support.
  * @uses machina_structural_wrap()    Adds optional internal wrap divs.
  */
 function machina_do_subnav() {
@@ -147,7 +145,7 @@ function machina_do_subnav() {
 		$subnav_markup_open .= machina_structural_wrap( 'menu-secondary', 'open', 0 );
 
 		$subnav_markup_close  = machina_structural_wrap( 'menu-secondary', 'close', 0 );
-		$subnav_markup_close .= machina_html5() ? '</nav>' : '</div>';
+		$subnav_markup_close .= '</nav>';
 
 		$subnav_output = $subnav_markup_open . $subnav . $subnav_markup_close;
 

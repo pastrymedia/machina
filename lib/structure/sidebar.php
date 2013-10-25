@@ -56,7 +56,7 @@ function machina_do_sidebar_alt() {
  */
 function machina_default_widget_area_content( $name ) {
 
-	echo machina_html5() ? '<section class="widget widget_text">' : '<div class="widget widget_text">';
+	echo '<section class="widget widget_text">';
 	echo '<div class="widget-wrap">';
 
 		printf( '<h4 class="widgettitle">%s</h4>', esc_html( $name ) );
@@ -67,7 +67,7 @@ function machina_default_widget_area_content( $name ) {
 		echo '</p></div>';
 
 	echo '</div>';
-	echo machina_html5() ? '</section>' : '</div>';
+	echo '</section>';
 
 }
 

@@ -22,7 +22,6 @@ add_filter( 'get_search_form', 'machina_search_form' );
  *
  * @since 0.2.0
  *
- * @uses machina_html5() Check for HTML5 support.
  *
  * @return string HTML markup.
  */
@@ -37,10 +36,7 @@ function machina_search_form() {
 	//* Empty label, by default. Filterable.
 	$label = apply_filters( 'machina_search_form_label', '' );
 
-	if ( machina_html5() )
-		$form = sprintf( '<form method="get" class="search-form" action="%s" role="search">%s<input type="search" name="s" placeholder="%s" /><input type="submit" value="%s" /></form>', home_url( '/' ), esc_html( $label ), esc_attr( $search_text ), esc_attr( $button_text ) );
-	else
-		$form = sprintf( '<form method="get" class="searchform search-form" action="%s" role="search" >%s<input type="text" value="%s" name="s" class="s search-input" onfocus="%s" onblur="%s" /><input type="submit" class="searchsubmit search-submit" value="%s" /></form>', home_url( '/' ), esc_html( $label ), esc_attr( $search_text ), esc_attr( $onfocus ), esc_attr( $onblur ), esc_attr( $button_text ) );
+	$form = sprintf( '<form method="get" class="search-form" action="%s" role="search">%s<input type="search" name="s" placeholder="%s" /><input type="submit" value="%s" /></form>', home_url( '/' ), esc_html( $label ), esc_attr( $search_text ), esc_attr( $button_text ) );
 
 	return apply_filters( 'machina_search_form', $form, $search_text, $button_text, $label );
 

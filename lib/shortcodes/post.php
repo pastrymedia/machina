@@ -41,10 +41,7 @@ function machina_post_date_shortcode( $atts ) {
 
 	$display = ( 'relative' === $atts['format'] ) ? machina_human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) . ' ' . __( 'ago', 'machina' ) : get_the_time( $atts['format'] );
 
-	if ( machina_html5() )
 		$output = sprintf( '<time %s>', machina_attr( 'entry-time' ) ) . $atts['before'] . $atts['label'] . $display . $atts['after'] . '</time>';
-	else
-		$output = sprintf( '<span class="date published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], $display, get_the_time( 'c' ) );
 
 	return apply_filters( 'machina_post_date_shortcode', $output, $atts );
 
@@ -78,10 +75,7 @@ function machina_post_time_shortcode( $atts ) {
 
 	$atts = shortcode_atts( $defaults, $atts, 'post_time' );
 
-	if ( machina_html5() )
 		$output = sprintf( '<time %s>', machina_attr( 'entry-time' ) ) . $atts['before'] . $atts['label'] . get_the_time( $atts['format'] ) . $atts['after'] . '</time>';
-	else
-		$output = sprintf( '<span class="date published time" title="%5$s">%1$s%3$s%4$s%2$s</span> ', $atts['before'], $atts['after'], $atts['label'], get_the_time( $atts['format'] ), get_the_time( 'c' ) );
 
 	return apply_filters( 'machina_post_time_shortcode', $output, $atts );
 
@@ -113,15 +107,12 @@ function machina_post_author_shortcode( $atts ) {
 
 	$author = get_the_author();
 
-	if ( machina_html5() ) {
 		$output  = sprintf( '<span %s>', machina_attr( 'entry-author' ) );
 		$output .= $atts['before'];
 		$output .= sprintf( '<span %s>', machina_attr( 'entry-author-name' ) ) . esc_html( $author ) . '</span>';
 		$output .= $atts['after'];
 		$output .= '</span>';
-	} else {
-		$output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', esc_html( $author ), $atts['before'], $atts['after'] );
-	}
+
 
 	return apply_filters( 'machina_post_author_shortcode', $output, $atts );
 
@@ -159,17 +150,13 @@ function machina_post_author_link_shortcode( $atts ) {
 
 	$author = get_the_author();
 
-	if ( machina_html5() ) {
 		$output  = sprintf( '<span %s>', machina_attr( 'entry-author' ) );
 		$output .= $atts['before'];
 		$output .= sprintf( '<a href="%s" %s>', $url, machina_attr( 'entry-author-link' ) );
 		$output .= sprintf( '<span %s>', machina_attr( 'entry-author-name' ) );
 		$output .= esc_html( $author );
 		$output .= '</span></a>' . $atts['after'] . '</span>';
-	} else {
-		$link = '<a href="' . esc_url( $url ) . '" title="' . esc_attr( sprintf( __( 'Visit %s&#x02019;s website', 'machina' ), $author ) ) . '" rel="author external">' . esc_html( $author ) . '</a>';
-		$output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $link, $atts['before'], $atts['after'] );
-	}
+
 
 	return apply_filters( 'machina_post_author_link_shortcode', $output, $atts );
 
@@ -202,17 +189,13 @@ function machina_post_author_posts_link_shortcode( $atts ) {
 	$author = get_the_author();
 	$url    = get_author_posts_url( get_the_author_meta( 'ID' ) );
 
-	if ( machina_html5() ) {
 		$output  = sprintf( '<span %s>', machina_attr( 'entry-author' ) );
 		$output .= $atts['before'];
 		$output .= sprintf( '<a href="%s" %s>', $url, machina_attr( 'entry-author-link' ) );
 		$output .= sprintf( '<span %s>', machina_attr( 'entry-author-name' ) );
 		$output .= esc_html( $author );
 		$output .= '</span></a>' . $atts['after'] . '</span>';
-	} else {
-		$link   = sprintf( '<a href="%s" title="%s" rel="author">%s</a>', esc_url( $url ), esc_attr( $author ), esc_html( $author ) );
-		$output = sprintf( '<span class="author vcard">%2$s<span class="fn">%1$s</span>%3$s</span>', $link, $atts['before'], $atts['after'] );
-	}
+
 
 	return apply_filters( 'machina_post_author_posts_link_shortcode', $output, $atts );
 
@@ -301,10 +284,8 @@ function machina_post_tags_shortcode( $atts ) {
 	if ( ! $tags )
 		return;
 
-	if ( machina_html5() )
 		$output = sprintf( '<span %s>', machina_attr( 'entry-tags' ) ) . $tags . '</span>';
-	else
-		$output = '<span class="tags">' . $tags . '</span>';
+
 
 	return apply_filters( 'machina_post_tags_shortcode', $output, $atts );
 
@@ -338,10 +319,7 @@ function machina_post_categories_shortcode( $atts ) {
 
 	$cats = get_the_category_list( trim( $atts['sep'] ) . ' ' );
 
-	if ( machina_html5() )
 		$output = sprintf( '<span %s>', machina_attr( 'entry-categories' ) ) . $atts['before'] . $cats . $atts['after'] . '</span>';
-	else
-		$output = '<span class="categories">' . $atts['before'] . $cats . $atts['after'] . '</span>';
 
 	return apply_filters( 'machina_post_categories_shortcode', $output, $atts );
 
@@ -387,10 +365,8 @@ function machina_post_terms_shortcode( $atts ) {
 	if ( empty( $terms ) )
 			return;
 
-	if ( machina_html5() )
 		$output = sprintf( '<span %s>', machina_attr( 'entry-terms' ) ) . $terms . '</span>';
-	else
-		$output = '<span class="terms">' . $terms . '</span>';
+
 
 	return apply_filters( 'machina_post_terms_shortcode', $output, $terms, $atts );
 

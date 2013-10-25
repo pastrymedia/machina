@@ -70,15 +70,11 @@ add_action( 'after_setup_theme', '_machina_builtin_sidebar_params' );
  *
  * @since 2.0.0
  *
- * @uses machina_html5() Check if HTML5 is supported.
  * @global $wp_registered_sidebars
  */
 function _machina_builtin_sidebar_params() {
 
 	global $wp_registered_sidebars;
-
-	if ( ! machina_html5() )
-		return;
 
 	foreach ( $wp_registered_sidebars as $id => $params ) {
 
@@ -205,8 +201,8 @@ function machina_widget_area( $id, $args = array() ) {
 	$args = wp_parse_args(
 		$args,
 		array(
-			'before'              => machina_html5() ? '<aside class="widget-area">' : '<div class="widget-area">',
-			'after'               => machina_html5() ? '</aside>' : '</div>',
+			'before'              => '<aside class="widget-area">',
+			'after'               => '</aside>',
 			'default'             => '',
 			'show_inactive'       => 0,
 			'before_sidebar_hook' => 'machina_before_' . $id . '_widget_area',

@@ -168,8 +168,7 @@ class DDW_GWNF_Search_Widget extends WP_Widget {
 			esc_attr( $gwnf_button_string )
 		);
 
-		//$form = ( function_exists( 'machina_html5' ) && machina_html5() ) ? $gwnf_html5_form : $gwnf_xhtml_form;
-		$gwnf_search_form = ( function_exists( 'machina_html5' ) && machina_html5() ) ? $gwnf_html5_form : $gwnf_xhtml_form;
+		$gwnf_search_form = $gwnf_html5_form ;
 
 		/** Search form output for display */
 		echo '<div id="gwnf-search-widget-wrapper">' . $gwnf_search_form . '</div>';

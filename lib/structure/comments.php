@@ -105,16 +105,12 @@ function machina_do_comments() {
 	}
 	//* No comments so far
 	elseif ( 'open' === $post->comment_status && $no_comments_text = apply_filters( 'machina_no_comments_text', '' ) ) {
-		if ( machina_html5() )
 			echo sprintf( '<div %s>', machina_attr( 'entry-comments' ) ) . $no_comments_text . '</div>';
-		else
-			echo '<div id="comments">' . $no_comments_text . '</div>';
+
 	}
 	elseif ( $comments_closed_text = apply_filters( 'machina_comments_closed_text', '' ) ) {
-		if ( machina_html5() )
 			echo sprintf( '<div %s>', machina_attr( 'entry-comments' ) ) . $comments_closed_text . '</div>';
-		else
-			echo '<div id="comments">' . $comments_closed_text . '</div>';
+
 	}
 
 }
@@ -175,10 +171,8 @@ add_action( 'machina_list_comments', 'machina_default_list_comments' );
  *
  * @since 1.0.0
  *
- * @see machina_html5_comment_callback() HTML5 callback.
  * @see machina_comment_callback()       XHTML callback.
  *
- * @uses machina_html5() Check for HTML5 support.
  */
 function machina_default_list_comments() {
 
@@ -186,7 +180,7 @@ function machina_default_list_comments() {
 		'type'        => 'comment',
 		'avatar_size' => 48,
 		'format'      => 'html5', //* Not necessary, but a good example
-		'callback'    => machina_html5() ? 'machina_html5_comment_callback' : 'machina_comment_callback',
+		'callback'    => 'machina_comment_callback',
 	);
 
 	$args = apply_filters( 'machina_comment_list_args', $defaults );
@@ -214,57 +208,6 @@ function machina_default_list_pings() {
 }
 
 /**
- * Comment callback for {@link machina_default_list_comments()} if HTML5 is not active.
- *
- * Does `machina_before_comment` and `machina_after_comment` actions.
- *
- * Applies `comment_author_says_text` and `machina_comment_awaiting_moderation` filters.
- *
- * @since 1.0.0
- *
- * @param stdClass $comment Comment object.
- * @param array    $args    Comment args.
- * @param integer  $depth   Depth of current comment.
- */
-function machina_comment_callback( $comment, array $args, $depth ) {
-
-	$GLOBALS['comment'] = $comment; ?>
-
-	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-
-		<?php do_action( 'machina_before_comment' ); ?>
-
-		<div class="comment-header">
-			<div class="comment-author vcard">
-				<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
-				<?php printf( __( '<cite class="fn">%s</cite> <span class="says">%s:</span>', 'machina' ), get_comment_author_link(), apply_filters( 'comment_author_says_text', __( 'says', 'machina' ) ) ); ?>
-		 	</div>
-
-			<div class="comment-meta commentmetadata">
-				<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>"><?php printf( __( '%1$s at %2$s', 'machina' ), get_comment_date(), get_comment_time() ); ?></a>
-				<?php edit_comment_link( __( '(Edit)', 'machina' ), '' ); ?>
-			</div>
-		</div>
-
-		<div class="comment-content">
-			<?php if ( ! $comment->comment_approved ) : ?>
-				<p class="alert"><?php echo apply_filters( 'machina_comment_awaiting_moderation', __( 'Your comment is awaiting moderation.', 'machina' ) ); ?></p>
-			<?php endif; ?>
-
-			<?php comment_text(); ?>
-		</div>
-
-		<div class="reply">
-			<?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-		</div>
-
-		<?php do_action( 'machina_after_comment' );
-
-	//* No ending </li> tag because of comment threading
-
-}
-
-/**
  * Comment callback for {@link machina_default_list_comments()} if HTML5 is active.
  *
  * Does `machina_before_comment` and `machina_after_comment` actions.
@@ -277,7 +220,7 @@ function machina_comment_callback( $comment, array $args, $depth ) {
  * @param array    $args    Comment args.
  * @param integer  $depth   Depth of current comment.
  */
-function machina_html5_comment_callback( $comment, array $args, $depth ) {
+function machina_comment_callback( $comment, array $args, $depth ) {
 
 	$GLOBALS['comment'] = $comment; ?>
 
@@ -367,7 +310,6 @@ add_filter( 'comment_form_defaults', 'machina_comment_form_args' );
  *
  * @since 1.8.0
  *
- * @uses machina_html5() Check for HTML5 support.
  *
  * @global string $user_identity Display name of the user.
  *
@@ -377,8 +319,7 @@ add_filter( 'comment_form_defaults', 'machina_comment_form_args' );
  */
 function machina_comment_form_args( array $defaults ) {
 
-	//* Use WordPress default HTML5 comment form if themes supports HTML5
-	if ( machina_html5() )
+	//* Use WordPress default HTML5 comment form
 		return $defaults;
 
 	global $user_identity;
