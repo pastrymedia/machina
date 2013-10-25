@@ -12,10 +12,8 @@ Version 0.1.0 - Initial Public Offering
 
 
 ### Version 0.5.0 - Integrate Plugins
-+ Integrate Hooks plugin
 + Integrate Sidebars plugin
 + Build new 404 page
-+ Setup automatic footer copyright
 + Setup visual hook guide
 + Setup featured images
 + Setup title toggle
