@@ -193,8 +193,7 @@ function machina_do_post_title() {
 
 	//* Build the output
 	$output = machina_markup( array(
-		'html5'   => "<{$wrap} %s>",
-		'xhtml'   => sprintf( '<%s class="entry-title">%s</%s>', $wrap, $title, $wrap ),
+		'html'   => "<{$wrap} %s>",
 		'context' => 'entry-title',
 		'echo'    => false,
 	) );
@@ -233,8 +232,7 @@ function machina_post_info() {
 	$post_info = apply_filters( 'machina_post_info', '[post_date] ' . __( 'by', 'machina' ) . ' [post_author_posts_link] [post_comments] [post_edit]' );
 
 	machina_markup( array(
-		'html5' => sprintf( '<p class="entry-meta">%s</p>', $post_info ),
-		'xhtml' => sprintf( '<div class="post-info">%s</div>', $post_info ),
+		'html' => sprintf( '<p class="entry-meta">%s</p>', $post_info ),
 	) );
 
 }
@@ -335,8 +333,7 @@ function machina_do_post_content_nav() {
 
 	wp_link_pages( array(
 		'before' => machina_markup( array(
-				'html5'   => '<div %s>',
-				'xhtml'   => '<p class="pages">',
+				'html'   => '<div %s>',
 				'context' => 'entry-pagination',
 				'echo'    => false,
 			) ) . __( 'Pages:', 'machina' ),
@@ -437,8 +434,7 @@ function machina_post_meta() {
 	$post_meta = apply_filters( 'machina_post_meta', '[post_categories] [post_tags]' );
 
 	machina_markup( array(
-		'html5' => sprintf( '<p class="entry-meta">%s</p>', $post_meta ),
-		'xhtml' => sprintf( '<div class="post-meta">%s</div>', $post_meta ),
+		'html' => sprintf( '<p class="entry-meta">%s</p>', $post_meta ),
 	) );
 
 }
@@ -558,8 +554,7 @@ function machina_prev_next_posts_nav() {
 	$next = $next_link ? '<div class="pagination-next alignright">' . $next_link . '</div>' : '';
 
 	$nav = machina_markup( array(
-		'html5'   => '<div %s>',
-		'xhtml'   => '<div class="navigation">',
+		'html'   => '<div %s>',
 		'context' => 'archive-pagination',
 		'echo'    => false,
 	) );
@@ -623,8 +618,7 @@ function machina_numeric_posts_nav() {
 	}
 
 	machina_markup( array(
-		'html5'   => '<div %s>',
-		'xhtml'   => '<div class="navigation">',
+		'html'   => '<div %s>',
 		'context' => 'archive-pagination',
 	) );
 
@@ -685,8 +679,7 @@ function machina_prev_next_post_nav() {
 		return;
 
 	machina_markup( array(
-		'html5'   => '<div %s>',
-		'xhtml'   => '<div class="navigation">',
+		'html'   => '<div %s>',
 		'context' => 'adjacent-entry-pagination',
 	) );
 

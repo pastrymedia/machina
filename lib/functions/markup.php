@@ -39,8 +39,7 @@
 function machina_markup( $args = array() ) {
 
 	$defaults = array(
-		'html5'   => '',
-		'xhtml'   => '',
+		'html'   => '',
 		'context' => '',
 		'echo'    => true,
 	);
@@ -52,11 +51,11 @@ function machina_markup( $args = array() ) {
 	if ( false !== $pre )
 		return $pre;
 
-	if ( ! $args['html5'] || ! $args['xhtml'] )
+	if ( ! $args['html'] )
 		return '';
 
-	//* If HTML5, return HTML5 tag. Maybe add attributes. Else XHTML.
-		$tag = $args['context'] ? sprintf( $args['html5'], machina_attr( $args['context'] ) ) : $args['html5'];
+	//* Return HTML5 tag. Maybe add attributes.
+	$tag = $args['context'] ? sprintf( $args['html'], machina_attr( $args['context'] ) ) : $args['html'];
 
 
 

@@ -118,8 +118,7 @@ class Machina_Featured_Post extends WP_Widget {
 			$_machina_displayed_ids[] = get_the_ID();
 
 			machina_markup( array(
-				'html5'   => '<article %s>',
-				'xhtml'   => sprintf( '<div class="%s">', implode( ' ', get_post_class() ) ),
+				'html'   => '<article %s>',
 				'context' => 'entry',
 			) );
 
@@ -183,8 +182,7 @@ class Machina_Featured_Post extends WP_Widget {
 			}
 
 			machina_markup( array(
-				'html5' => '</article>',
-				'xhtml' => '</div>',
+				'html' => '</article>',
 			) );
 
 		endwhile; endif;

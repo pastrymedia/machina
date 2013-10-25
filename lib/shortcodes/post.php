@@ -244,8 +244,7 @@ function machina_post_comments_shortcode( $atts ) {
 	$comments = sprintf( '<a href="%s">%s</a>', get_comments_link(), $comments );
 
 	$output = machina_markup( array(
-		'html5' => '<span class="entry-comments-link">' . $atts['before'] . $comments . $atts['after'] . '</span>',
-		'xhtml' => '<span class="post-comments">' . $atts['before'] . $comments . $atts['after'] . '</span>',
+		'html' => '<span class="entry-comments-link">' . $atts['before'] . $comments . $atts['after'] . '</span>',
 		'echo'  => false,
 	) );
 

@@ -106,8 +106,7 @@ class Machina_Header_Nav {
 			return;
 
 		$nav_markup_open = machina_markup( array(
-			'html5'   => '<nav %s>',
-			'xhtml'   => '<div id="nav">',
+			'html'   => '<nav %s>',
 			'context' => 'nav-header',
 			'echo'    => false,
 		) );

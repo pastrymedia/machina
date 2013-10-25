@@ -13,8 +13,7 @@
 
 //* Output primary sidebar structure
 machina_markup( array(
-	'html5'   => '<aside %s>',
-	'xhtml'   => '<div id="sidebar" class="sidebar widget-area">',
+	'html'   => '<aside %s>',
 	'context' => 'sidebar-primary',
 ) );
 
@@ -23,6 +22,5 @@ do_action( 'machina_sidebar' );
 do_action( 'machina_after_sidebar_widget_area' );
 
 machina_markup( array(
-	'html5' => '</aside>', //* end .sidebar-primary
-	'xhtml' => '</div>', //* end #sidebar
+	'html' => '</aside>', //* end .sidebar-primary
 ) );

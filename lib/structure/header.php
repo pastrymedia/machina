@@ -796,8 +796,7 @@ add_action( 'machina_header', 'machina_header_markup_open', 5 );
 function machina_header_markup_open() {
 
 	machina_markup( array(
-		'html5'   => '<header %s>',
-		'xhtml'   => '<div id="header">',
+		'html'   => '<header %s>',
 		'context' => 'site-header',
 	) );
 
@@ -818,8 +817,7 @@ function machina_header_markup_close() {
 
 	machina_structural_wrap( 'header', 'close' );
 	machina_markup( array(
-		'html5' => '</header>',
-		'xhtml' => '</div>',
+		'html' => '</header>',
 	) );
 
 }
@@ -841,8 +839,7 @@ function machina_do_header() {
 	global $wp_registered_sidebars;
 
 	machina_markup( array(
-		'html5'   => '<div %s>',
-		'xhtml'   => '<div id="title-area">',
+		'html'   => '<div %s>',
 		'context' => 'title-area',
 	) );
 	do_action( 'machina_site_title' );
@@ -851,8 +848,7 @@ function machina_do_header() {
 
 	if ( ( isset( $wp_registered_sidebars['header-right'] ) && is_active_sidebar( 'header-right' ) ) || has_action( 'machina_header_right' ) ) {
 		machina_markup( array(
-			'html5'   => '<aside %s>',
-			'xhtml'   => '<div class="widget-area header-widget-area">',
+			'html'   => '<aside %s>',
 			'context' => 'header-widget-area',
 		) );
 
@@ -864,8 +860,7 @@ function machina_do_header() {
 			remove_filter( 'wp_nav_menu', 'machina_header_menu_wrap' );
 
 		machina_markup( array(
-			'html5' => '</aside>',
-			'xhtml' => '</div>',
+			'html' => '</aside>',
 		) );
 	}
 

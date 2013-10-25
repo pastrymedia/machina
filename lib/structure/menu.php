@@ -78,8 +78,7 @@ function machina_do_nav() {
 			return;
 
 		$nav_markup_open = machina_markup( array(
-			'html5'   => '<nav %s>',
-			'xhtml'   => '<div id="nav">',
+			'html'   => '<nav %s>',
 			'context' => 'nav-primary',
 			'echo'    => false,
 		) );
@@ -137,8 +136,7 @@ function machina_do_subnav() {
 			return;
 
 		$subnav_markup_open = machina_markup( array(
-			'html5'   => '<nav %s>',
-			'xhtml'   => '<div id="subnav">',
+			'html'   => '<nav %s>',
 			'context' => 'nav-secondary',
 			'echo'    => false,
 		) );

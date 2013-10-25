@@ -13,8 +13,7 @@
 
 //* Output secondary sidebar structure
 machina_markup( array(
-	'html5'   => '<aside %s>',
-	'xhtml'   => '<div id="sidebar-alt" class="sidebar widget-area">',
+	'html'   => '<aside %s>',
 	'context' => 'sidebar-secondary',
 ) );
 
@@ -23,6 +22,5 @@ do_action( 'machina_sidebar_alt' );
 do_action( 'machina_after_sidebar_alt_widget_area' );
 
 machina_markup( array(
-	'html5' => '</aside>', //* end .sidebar-secondary
-	'xhtml' => '</div>', //* end #sidebar-alt
+	'html' => '</aside>', //* end .sidebar-secondary
 ) );

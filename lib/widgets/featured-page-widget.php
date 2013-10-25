@@ -89,8 +89,7 @@ class Machina_Featured_Page extends WP_Widget {
 		if ( have_posts() ) : while ( have_posts() ) : the_post();
 
 			machina_markup( array(
-				'html5'   => '<article %s>',
-				'xhtml'   => sprintf( '<div class="%s">', implode( ' ', get_post_class() ) ),
+				'html'   => '<article %s>',
 				'context' => 'entry',
 			) );
 
@@ -131,8 +130,7 @@ class Machina_Featured_Page extends WP_Widget {
 			}
 
 			machina_markup( array(
-				'html5' => '</article>',
-				'xhtml' => '</div>',
+				'html' => '</article>',
 			) );
 
 			endwhile;

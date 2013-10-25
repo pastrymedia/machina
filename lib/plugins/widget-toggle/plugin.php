@@ -122,8 +122,7 @@ class Machina_Widget_Toggle {
 
 			echo '<div class="widget-toggle-container">';
 				machina_markup( array(
-					'html5'   => '<aside %s>',
-					'xhtml'   => '<div class="widget-toggle">',
+					'html'   => '<aside %s>',
 					'context' => 'widget-toggle' ) );
 
 					echo '<div class="wrap">';

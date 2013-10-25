@@ -20,15 +20,13 @@ wp_head(); //* we need this for plugins
 </head>
 <?php
 machina_markup( array(
-	'html5'   => '<body %s>',
-	'xhtml'   => sprintf( '<body class="%s">', implode( ' ', get_body_class() ) ),
+	'html'   => '<body %s>',
 	'context' => 'body',
 ) );
 do_action( 'machina_before' );
 
 machina_markup( array(
-	'html5'   => '<div %s>',
-	'xhtml'   => '<div id="wrap">',
+	'html'   => '<div %s>',
 	'context' => 'site-container',
 ) );
 
@@ -37,8 +35,7 @@ do_action( 'machina_header' );
 do_action( 'machina_after_header' );
 
 machina_markup( array(
-	'html5'   => '<div %s>',
-	'xhtml'   => '<div id="inner">',
+	'html'   => '<div %s>',
 	'context' => 'site-inner',
 ) );
 machina_structural_wrap( 'site-inner' );
