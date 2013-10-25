@@ -752,3 +752,84 @@ function machina_do_after_post_widget() {
         );
  }
 }
+
+add_filter( 'the_content', 'bfg_remove_ptags_on_images' );
+/**
+ * Remove <p> tags from around images
+ *
+ * See: http://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/
+ *
+ * @since 1.x
+ */
+function bfg_remove_ptags_on_images( $content ){
+
+	return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content );
+
+}
+
+add_filter( 'gallery_style', 'bfg_gallery_style' );
+/**
+ * Remove the injected styles for the [gallery] shortcode
+ *
+ * @since 1.x
+ */
+function bfg_gallery_style( $css ) {
+
+	return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
+
+}
+
+// add_filter( 'the_content_more_link', 'bfg_more_tag_excerpt_link' );
+/**
+ * Customize the excerpt text, when using the <!--more--> tag
+ *
+ * See: http://my.studiopress.com/snippets/post-excerpts/
+ *
+ * @since 2.0.16
+ */
+function bfg_more_tag_excerpt_link() {
+
+	return ' <a class="more-link" href="' . get_permalink() . '">Read more &rarr;</a>';
+
+}
+
+// add_filter( 'excerpt_more', 'bfg_truncated_excerpt_link' );
+// add_filter( 'get_the_content_more_link', 'bfg_truncated_excerpt_link' );
+/**
+ * Customize the excerpt text, when using automatic truncation
+ *
+ * See: http://my.studiopress.com/snippets/post-excerpts/
+ *
+ * @since 2.0.16
+ */
+function bfg_truncated_excerpt_link() {
+
+	return '... <a class="more-link" href="' . get_permalink() . '">Read more &rarr;</a>';
+
+}
+
+// add_filter ( 'machina_prev_link_text' , 'bfg_prev_link_text' );
+/**
+ * Customize the post navigation prev text
+ * (Only applies to the 'Previous/Next' Post Navigation Technique, set in Machina > Theme Options)
+ *
+ * @since 2.0.0
+ */
+function bfg_prev_link_text( $text ) {
+
+    return html_entity_decode('&#10216;') . ' ';
+
+}
+
+// add_filter ( 'machina_next_link_text' , 'bfg_next_link_text' );
+/**
+ * Customize the post navigation next text
+ * (Only applies to the 'Previous/Next' Post Navigation Technique, set in Machina > Theme Options)
+ *
+ * @since 2.0.0
+ */
+function bfg_next_link_text( $text ) {
+
+    return ' ' . html_entity_decode('&#10217;');
+
+}

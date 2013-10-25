@@ -11,6 +11,17 @@
  * @link    http://my.machinathemes.com/themes/machina/
  */
 
+/**
+ * Cleanup <head>
+ *
+ * @since 2.0.0
+ */
+remove_action( 'wp_head', 'rsd_link' );									// RSD link
+remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );				// Parent rel link
+remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );				// Start post rel link
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );	// Adjacent post rel link
+remove_action( 'wp_head', 'wp_generator' );								// WP Version
+
 add_action( 'machina_doctype', 'machina_do_doctype' );
 /**
  * Echo the doctype and opening markup.
@@ -988,5 +999,61 @@ function machina_header_menu_wrap( $menu ) {
 		return $menu;
 
 	return sprintf( '<nav %s>', machina_attr( 'nav-header' ) ) . $menu . '</nav>';
+
+}
+
+// add_filter( 'machina_pre_load_favicon', 'bfg_pre_load_favicon' );
+/**
+ * Simple favicon override to specify your favicon's location
+ *
+ * @since 2.0.0
+ */
+function bfg_pre_load_favicon() {
+
+	return get_stylesheet_directory_uri() . '/images/favicon.ico';
+
+}
+
+// remove_action( 'wp_head', 'machina_load_favicon' );
+// add_action( 'wp_head', 'bfg_load_favicons' );
+/**
+ * Show the best favicon, within reason
+ *
+ * See: http://www.jonathantneal.com/blog/understand-the-favicon/
+ *
+ * @since 2.0.4
+ */
+function bfg_load_favicons() {
+
+	$favicon_path = get_stylesheet_directory_uri() . '/images/favicons';
+
+	// Use a 152px X 152px PNG for the latest iOS devices
+	echo '<link rel="apple-touch-icon" href="' . $favicon_path . '/favicon-152.png">';
+
+	// Use a 96px X 96px PNG for modern desktop browsers
+	echo '<link rel="icon" href="' . $favicon_path . '/favicon-96.png">';
+
+	// Give IE <= 9 the old favicon.ico (16px X 16px)
+	echo '<!--[if IE]><link rel="shortcut icon" href="' . $favicon_path . '/favicon.ico"><![endif]-->';
+
+	// Use a 144px X 144px PNG for Windows tablets, or just serve them the iOS7 152px icon
+	// echo '<meta name="msapplication-TileImage" content="' . $favicon_path . '/favicon-144.png">';
+	echo '<meta name="msapplication-TileImage" content="' . $favicon_path . '/favicon-152.png">';
+
+	// Optional: specify a background color for your Windows tablet icon
+	// echo '<meta name="msapplication-TileColor" content="#d83434">';
+
+}
+
+add_filter( 'body_class', 'bfg_no_js_body_class' );
+/**
+ * Adds a 'no-js' class to <body>, for testing the presence of JavaScript
+ *
+ * @since 2.0.0
+ */
+function bfg_no_js_body_class( $classes ) {
+
+	$classes[] = 'no-js';
+	return $classes;
 
 }
