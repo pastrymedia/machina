@@ -76,8 +76,6 @@ class BBP_Machina {
 			 * If you moved the info/meta from their default locations, you are
 			 * on your own.
 			 */
-			remove_action( 'machina_before_post_content', 'machina_post_info'     );
-			remove_action( 'machina_after_post_content',  'machina_post_meta'     );
 			remove_action( 'machina_entry_header',        'machina_post_info', 12 );
 			remove_action( 'machina_entry_footer',        'machina_post_meta'     );
 
@@ -87,8 +85,6 @@ class BBP_Machina {
 			 * bbPress heavily relies on the_content() so if Machina is
 			 * modifying it unexpectedly, we need to un-unexpect it.
 			 */
-			remove_action( 'machina_post_content',  'machina_do_post_image'     );
-			remove_action( 'machina_post_content',  'machina_do_post_content'   );
 			remove_action( 'machina_entry_content', 'machina_do_post_image',  8 );
 			remove_action( 'machina_entry_content', 'machina_do_post_content'   );
 
@@ -97,7 +93,6 @@ class BBP_Machina {
 			 *
 			 * In some odd cases the Machina authorbox could appear
 			 */
-			remove_action( 'machina_after_post',   'machina_do_author_box_single' );
 			remove_action( 'machina_entry_footer', 'machina_do_author_box_single' );
 
 			/**
@@ -128,7 +123,6 @@ class BBP_Machina {
 			 * bbPress doesn't play nice with the Machina formatted content, so
 			 * we remove it above and reapply the normal version bbPress expects.
 			 */
-			add_action( 'machina_post_content',  'the_content' );
 			add_action( 'machina_entry_content', 'the_content' );
 
 			/** Filters *******************************************************/

@@ -65,7 +65,7 @@ function gfi_remove_do_post_image() {
     }
 }
 
-//add_action( 'machina_post_content' , 'gfi_do_post_image' );
+//add_action( 'machina_entry_content' , 'gfi_do_post_image' );
 function gfi_do_post_image() {
 	global $prefix;
 	if ( ! is_singular() && machina_get_option( 'content_archive_thumbnail' ) ) {

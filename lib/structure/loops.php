@@ -146,7 +146,7 @@ function machina_custom_loop( $args = array() ) {
  * The grid loop - a specific implementation of a custom loop.
  *
  * Outputs markup compatible with a Feature + Grid style layout.
- * All normal loop hooks present, except for `machina_post_content`.
+ * All normal loop hooks present, except for `machina_entry_content`.
  *
  * The arguments can be filtered by the `machina_grid_loop_args` filter.
  *
@@ -200,11 +200,6 @@ function machina_grid_loop( $args = array() ) {
 	$_machina_loop_args = $args;
 
 	//* Remove some unnecessary stuff from the grid loop
-	remove_action( 'machina_before_post_title', 'machina_do_post_format_image' );
-	remove_action( 'machina_post_content', 'machina_do_post_image' );
-	remove_action( 'machina_post_content', 'machina_do_post_content' );
-	remove_action( 'machina_post_content', 'machina_do_post_content_nav' );
-
 	remove_action( 'machina_entry_header', 'machina_do_post_format_image', 4 );
 	remove_action( 'machina_entry_content', 'machina_do_post_image', 8 );
 	remove_action( 'machina_entry_content', 'machina_do_post_content' );
@@ -214,7 +209,6 @@ function machina_grid_loop( $args = array() ) {
 
 	//* Custom loop output
 	add_filter( 'post_class', 'machina_grid_loop_post_class' );
-	add_action( 'machina_post_content', 'machina_grid_loop_content' );
 	add_action( 'machina_entry_content', 'machina_grid_loop_content' );
 
 	//* The loop
@@ -223,7 +217,6 @@ function machina_grid_loop( $args = array() ) {
 	//* Reset loops
 	machina_reset_loops();
 	remove_filter( 'post_class', 'machina_grid_loop_post_class' );
-	remove_action( 'machina_post_content', 'machina_grid_loop_content' );
 	remove_action( 'machina_entry_content', 'machina_grid_loop_content' );
 
 }
@@ -331,7 +324,6 @@ function machina_grid_loop_content() {
 
 }
 
-add_action( 'machina_after_post', 'machina_add_id_to_global_exclude' );
 add_action( 'machina_after_entry', 'machina_add_id_to_global_exclude' );
 /**
  * Modify the global $_machina_displayed_ids each time a loop iterates.

@@ -183,8 +183,6 @@ function gs_post_class( $classes ) {
 /*
 07 Author Boxes
 ---------------------------------------------------------------------------------------------------- */
-/** Remove author box on single posts */
-remove_action( 'machina_after_post', 'machina_do_author_box_single' );
 
 /** Display author box on single posts */
 add_filter( 'get_the_author_machina_author_box_single', '__return_true' );
@@ -306,8 +304,7 @@ function gs_post_info_filter( $post_info ) {
 	return '[post_date] by [post_author_posts_link] [post_comments] [post_edit]';
 }
 
-/** Remove the post info function */
-remove_action( 'machina_before_post_content', 'machina_post_info' );
+
 //add_filter( 'machina_post_info', '__return_null' );
 
 add_filter( 'machina_post_meta', 'gs_post_meta_filter' );
@@ -323,7 +320,6 @@ function gs_post_meta_filter( $post_meta ) {
 }
 
 /** Remove the post meta function */
-remove_action( 'machina_after_post_content', 'machina_post_meta' );
 //add_filter( 'machina_post_meta', '__return_null' );
 
 /*

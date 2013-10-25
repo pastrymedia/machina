@@ -13,7 +13,7 @@
  * @since 1.1.0
  */
 
-add_action( 'machina_after_post_content', 'gcedd_single_after_widget' );
+add_action( 'machina_entry_footer', 'gcedd_single_after_widget' );
 /**
  * Add the optional after content widget for the single download page
  *

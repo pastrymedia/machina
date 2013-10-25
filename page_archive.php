@@ -14,11 +14,9 @@
 //* Template Name: Archive
 
 //* Remove standard post content output
-remove_action( 'machina_post_content', 'machina_do_post_content' );
 remove_action( 'machina_entry_content', 'machina_do_post_content' );
 
 add_action( 'machina_entry_content', 'machina_page_archive_content' );
-add_action( 'machina_post_content', 'machina_page_archive_content' );
 /**
  * This function outputs sitemap-esque columns displaying all pages,
  * categories, authors, monthly archives, and recent posts.

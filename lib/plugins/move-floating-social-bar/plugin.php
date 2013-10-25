@@ -44,7 +44,7 @@ function mfsbig_remove_floating_social_bar() {
 	}
 }
 
-add_action( 'machina_before_post_content', 'mfsbig_add_floating_social_bar' );  // XHTML themes
+
 add_action( 'machina_before_entry_content', 'mfsbig_add_floating_social_bar' ); // HTML5 themes
 /**
  * Echo the Floating Social Bar in the right place, just before the entry

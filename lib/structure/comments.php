@@ -11,7 +11,6 @@
  * @link    http://my.machinathemes.com/themes/machina/
  */
 
-add_action( 'machina_after_post', 'machina_get_comments_template' );
 add_action( 'machina_after_entry', 'machina_get_comments_template' );
 /**
  * Output the comments at the end of entries.

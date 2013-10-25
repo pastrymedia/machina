@@ -88,18 +88,6 @@ class Machina_Admin_Hook_Settings extends Machina_Admin_Boxes {
 			'machina_entry_footer' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
 			'machina_after_entry' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
 
-			//* xHTML Entry Hooks
-			'machina_before_post' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-			'machina_after_post' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-
-			'machina_before_post_title' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-			'machina_post_title' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-			'machina_after_post_title' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-
-			'machina_before_post_content' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-			'machina_post_content' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-			'machina_after_post_content' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
-
 			//* Comment Hooks
 			'machina_before_comments' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
 			'machina_comments' => array( 'content' => '', 'php' => 0, 'shortcodes' => 0 ),
@@ -183,10 +171,7 @@ class Machina_Admin_Hook_Settings extends Machina_Admin_Boxes {
 		add_meta_box( 'machina-hook-settings-content-hooks', __( 'Content Hooks', 'machina' ), array( $this, 'content_hooks_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-hook-settings-loop-hooks', __( 'Loop Hooks', 'machina' ), array( $this, 'loop_hooks_box' ), $this->pagehook, 'main' );
 
-		if ( current_theme_supports( 'html5' ) )
 			add_meta_box( 'machina-hook-settings-entry-hooks', __( 'Entry Hooks', 'machina' ), array( $this, 'html5_entry_hooks_box' ), $this->pagehook, 'main' );
-		else
-			add_meta_box( 'machina-hook-settings-post-hooks', __( 'Post/Page Hooks', 'machina' ), array( $this, 'post_hooks_box' ), $this->pagehook, 'main' );
 
 		add_meta_box( 'machina-hook-settings-comment-list-hooks', __( 'Comment List Hooks', 'machina' ), array( $this, 'comment_list_hooks_box' ), $this->pagehook, 'main' );
 		add_meta_box( 'machina-hook-settings-ping-list-hooks', __( 'Ping List Hooks', 'machina' ), array( $this, 'ping_list_hooks_box' ), $this->pagehook, 'main' );
@@ -347,57 +332,6 @@ class Machina_Admin_Hook_Settings extends Machina_Admin_Boxes {
 		machina_hooks_form_generate(array(
 			'hook' => 'machina_after_entry',
 			'desc' => __( 'This hook executes after each entry in all loop blocks (outside the entry markup element).', 'machina' )
-		) );
-
-		submit_button( __( 'Save Changes', 'machina' ), 'primary' );
-
-	}
-
-	function post_hooks_box() {
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_before_post',
-			'desc' => __( 'This hook executes before each post in all loop blocks (outside the <code>post_class()</code> div).', 'machina' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_after_post',
-			'desc' => __( 'This hook executes after each post in all loop blocks (outside the <code>post_class()</code> div).', 'machina' ),
-			'unhook' => array( 'machina_do_author_box' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_before_post_title',
-			'desc' => __( 'This hook executes immediately before each post/page title within the loop.', 'machina' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_post_title',
-			'desc' => __( 'This hook outputs the post/page title.', 'machina' ),
-			'unhook' => array( 'machina_do_post_title' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_after_post_title',
-			'desc' => __( 'This hook executes immediately after each post/page title within the loop.', 'machina' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_before_post_content',
-			'desc' => __( 'This hook executes immediately before the <code>machina_post_content</code> hook for each post/page within the loop.', 'machina' ),
-			'unhook' => array( 'machina_post_info' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_post_content',
-			'desc' => __( 'This hook outputs the content of the post/page, by default.', 'machina' ),
-			'unhook' => array( 'machina_do_post_image', 'machina_do_post_content' )
-		) );
-
-		machina_hooks_form_generate( array(
-			'hook' => 'machina_after_post_content',
-			'desc' => __( 'This hook executes immediately after the <code>machina_post_content</code> hook for each post/page within the loop.', 'machina' ),
-			'unhook' => array( 'machina_post_meta' )
 		) );
 
 		submit_button( __( 'Save Changes', 'machina' ), 'primary' );

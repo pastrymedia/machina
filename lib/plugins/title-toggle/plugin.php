@@ -30,7 +30,7 @@ class BE_Title_Toggle {
 
 		// If using post formats, have to hook in later for some themes
 		if( current_theme_supports( 'post-formats' ) )
-			add_action( 'machina_before_post', array( $this, 'title_toggle' ), 20 );
+			add_action( 'machina_before_entry', array( $this, 'title_toggle' ), 20 );
 	}
 
 
@@ -184,7 +184,6 @@ class BE_Title_Toggle {
 
 			// If override is empty, get rid of that title
 			if (empty( $override ) ) {
-				remove_action( 'machina_post_title', 'machina_do_post_title' );
 				remove_action( 'machina_entry_header', 'machina_do_post_title' );
 			}
 
@@ -194,7 +193,6 @@ class BE_Title_Toggle {
 
 			// If override has a value, the title's gotta go
 			if ( !empty( $override ) ) {
-				remove_action( 'machina_post_title', 'machina_do_post_title' );
 				remove_action( 'machina_entry_header', 'machina_do_post_title' );
 			}
 		}

@@ -47,20 +47,6 @@ function machina_reset_loops() {
 	add_action( 'machina_after_entry', 'machina_do_author_box_single', 8 );
 	add_action( 'machina_after_entry', 'machina_get_comments_template' );
 
-	// Add Widget Area After Post
-	add_action('machina_after_post', 'machina_do_after_post_widget');
-
-	//* Pre-HTML5 hooks
-	add_action( 'machina_before_post_title', 'machina_do_post_format_image' );
-	add_action( 'machina_post_title', 'machina_do_post_title' );
-	add_action( 'machina_post_content', 'machina_do_post_image' );
-	add_action( 'machina_post_content', 'machina_do_post_content' );
-	add_action( 'machina_post_content', 'machina_do_post_permalink' );
-	add_action( 'machina_post_content', 'machina_do_post_content_nav' );
-	add_action( 'machina_before_post_content', 'machina_post_info' );
-	add_action( 'machina_after_post_content', 'machina_post_meta' );
-	add_action( 'machina_after_post', 'machina_do_author_box_single' );
-
 	//* Other
 	add_action( 'machina_loop_else', 'machina_do_noposts' );
 	add_action( 'machina_after_endwhile', 'machina_posts_nav' );
@@ -119,7 +105,6 @@ function machina_custom_post_class( array $classes ) {
 }
 
 add_action( 'machina_entry_header', 'machina_do_post_format_image', 4 );
-add_action( 'machina_before_post_title', 'machina_do_post_format_image' );
 /**
  * Add a post format icon.
  *
@@ -176,7 +161,6 @@ function machina_entry_header_markup_close() {
 }
 
 add_action( 'machina_entry_header', 'machina_do_post_title' );
-add_action( 'machina_post_title', 'machina_do_post_title' );
 /**
  * Echo the title of a post.
  *
@@ -223,7 +207,6 @@ function machina_do_post_title() {
 
 add_filter( 'machina_post_info', 'do_shortcode', 20 );
 add_action( 'machina_entry_header', 'machina_post_info', 12 );
-add_action( 'machina_before_post_content', 'machina_post_info' );
 /**
  * Echo the post info (byline) under the post title.
  *
@@ -266,7 +249,6 @@ function post_info_filter( $output ) {
 
 
 add_action( 'machina_entry_content', 'machina_do_post_image', 8 );
-add_action( 'machina_post_content', 'machina_do_post_image' );
 /**
  * Echo the post image on archive pages.
  *
@@ -296,7 +278,6 @@ function machina_do_post_image() {
 }
 
 add_action( 'machina_entry_content', 'machina_do_post_content' );
-add_action( 'machina_post_content', 'machina_do_post_content' );
 /**
  * Echo the post content.
  *
@@ -343,7 +324,6 @@ function machina_do_post_content() {
 }
 
 add_action( 'machina_entry_content', 'machina_do_post_content_nav', 12 );
-add_action( 'machina_post_content', 'machina_do_post_content_nav' );
 /**
  * Display page links for paginated posts (i.e. includes the <!--nextpage--> Quicktag one or more times).
  *
@@ -366,7 +346,6 @@ function machina_do_post_content_nav() {
 }
 
 add_action( 'machina_entry_content', 'machina_do_post_permalink', 14 );
-add_action( 'machina_post_content', 'machina_do_post_permalink' );
 /**
  * Show permalink if no title.
  *
@@ -432,7 +411,6 @@ function machina_entry_footer_markup_close() {
 
 add_filter( 'machina_post_meta', 'do_shortcode', 20 );
 add_action( 'machina_entry_footer', 'machina_post_meta' );
-add_action( 'machina_after_post_content', 'machina_post_meta' );
 /**
  * Echo the post meta after the post content.
  *
@@ -474,7 +452,6 @@ function post_meta_filter( $output ) {
 }
 
 add_action( 'machina_after_entry', 'machina_do_author_box_single', 8 );
-add_action( 'machina_after_post', 'machina_do_author_box_single' );
 /**
  * Conditionally add the author box after single posts or pages.
  *
